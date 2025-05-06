@@ -35,8 +35,6 @@ const error = ref<string | null>(null)
 
 onMounted(() => {
   document.title = 'Jonas CV'
-  const dev = import.meta.env.DEV
-
   content.value = contentData
 })
 </script>
