@@ -9,7 +9,14 @@
         :key="section.title"
         :section="section"
       >
-        <Skills v-if="section.title === 'Skills'" :skills="section.content" />
+        <Skills
+          v-if="section.title === 'Skills'"
+          :skills="
+            section.content.filter(
+              (item) => 'text' in item && 'image' in item && 'grade' in item
+            )
+          "
+        />
       </Section>
     </main>
   </div>
@@ -21,9 +28,10 @@ import Header from './components/Header.vue'
 import Section from './components/Section.vue'
 import Skills from './components/Skills.vue'
 import Error from './components/Error.vue'
+import contentData from './assets/data/cv-content.json'
 
-const content = ref({})
-const error = ref(null)
+const content = ref(contentData)
+const error = ref<string | null>(null) // Allow both null and string
 
 onMounted(async () => {
   document.title = 'Jonas CV'
@@ -34,7 +42,7 @@ onMounted(async () => {
     }
     content.value = await response.json()
   } catch (err) {
-    error.value = err.message
+    error.value = (err as Error).message
     console.error('Error loading JSON:', err)
   }
 })

@@ -26,7 +26,13 @@
 
 <script setup lang="ts">
 defineProps({
-  content: Object,
+  content: {
+    type: Object,
+    required: true,
+    default: () => ({
+      header: { name: '', role: '', summary: '', socialLinks: [] },
+    }),
+  },
 })
 </script>
 

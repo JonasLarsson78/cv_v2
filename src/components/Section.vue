@@ -40,7 +40,11 @@
 
 <script setup lang="ts">
 defineProps({
-  section: Object,
+  section: {
+    type: Object,
+    required: true,
+    default: () => ({ title: '', content: [] }),
+  },
 })
 </script>
 

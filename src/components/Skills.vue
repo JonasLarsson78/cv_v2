@@ -19,8 +19,18 @@
 </template>
 
 <script setup lang="ts">
+interface Skill {
+  text: string
+  image: string
+  grade: number
+}
+
 defineProps({
-  skills: Array,
+  skills: {
+    type: Array as () => Skill[],
+    required: true,
+    default: () => [],
+  },
 })
 </script>
 
