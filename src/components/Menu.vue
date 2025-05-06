@@ -24,7 +24,8 @@
 </template>
 
 <script setup lang="ts">
-import { PropType, ref } from 'vue'
+import { ref } from 'vue'
+import type { PropType } from 'vue'
 
 const props = defineProps({
   sections: {

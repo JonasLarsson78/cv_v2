@@ -1,21 +1,21 @@
 <template>
   <Error v-if="error" :error="error" />
-  <div v-else-if="content && content.header" class="cv-container">
-    <Menu :sections="content.sections || []" />
+  <div v-else-if="content && content?.header" class="cv-container">
+    <Menu :sections="content?.sections || []" />
 
     <Header :content="content" />
 
     <main class="cv-main">
       <Section
-        v-for="section in content.sections"
-        :key="section.title"
+        v-for="section in content?.sections"
+        :key="section?.title"
         :section="section"
-        :id="section.title.toLowerCase().replace(/\s+/g, '-')"
+        :id="section?.title.toLowerCase().replace(/\s+/g, '-')"
       >
         <Skills
-          v-if="section.title === 'Skills'"
+          v-if="section?.title === 'Skills'"
           :skills="
-            section.content.filter(
+            section?.content.filter(
               (item) => 'text' in item && 'image' in item && 'grade' in item
             )
           "
@@ -34,7 +34,34 @@ import Error from './components/Error.vue'
 import Menu from './components/Menu.vue'
 import contentData from './data/cv-content.json'
 
-const content = ref(null)
+type ContentType = {
+  header: {
+    name: string
+    role: string
+    summary: string
+    socialLinks: { icon: string; url: string }[]
+  }
+  sections: (
+    | {
+        title: string
+        content: { heading: string; subheading: string; description: string }[]
+      }
+    | {
+        title: string
+        content: { icon: string; text: string; url?: string }[]
+      }
+    | {
+        title: string
+        content: { heading: string; date: string; details: string[] }[]
+      }
+    | {
+        title: string
+        content: { image: string; text: string; grade: number }[]
+      }
+  )[]
+}
+
+const content = ref<ContentType | null>(null)
 const error = ref<string | null>(null)
 
 onMounted(() => {
