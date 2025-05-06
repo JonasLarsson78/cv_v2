@@ -1,7 +1,7 @@
 <template>
   <section class="skills-section">
     <div class="skills-container">
-      <div v-for="skill in skills" :key="skill.text" class="skill-item">
+      <div v-for="skill in resolvedSkills" :key="skill.text" class="skill-item">
         <img :src="skill.image" :alt="skill.text" class="skill-image" />
         <p>{{ skill.text }}</p>
         <div class="skill-grade" style="margin: 0 auto">
@@ -19,18 +19,27 @@
 </template>
 
 <script setup lang="ts">
+import { computed } from 'vue'
+
 interface Skill {
   text: string
   image: string
   grade: number
 }
 
-defineProps({
+const props = defineProps({
   skills: {
     type: Array as () => Skill[],
     required: true,
     default: () => [],
   },
+})
+
+const resolvedSkills = computed(() => {
+  return props.skills?.map((skill) => ({
+    ...skill,
+    image: new URL(skill.image, import.meta.url).href,
+  }))
 })
 </script>
 
