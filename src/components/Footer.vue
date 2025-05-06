@@ -16,22 +16,7 @@ defineProps({
 
 <style lang="scss" scoped>
 .cv-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
-  width: 100%;
-  padding: 10px;
-  background: rgba(0, 0, 0, 0.8);
-  border-radius: 12px 12px 0 0;
-  box-shadow: 0 -2px 10px rgba(var(--fancy-color-rgb), 0.3);
   text-align: center;
-
-  .menu {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
+  margin-top: 20px;
 }
 </style>
