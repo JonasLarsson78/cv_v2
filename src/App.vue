@@ -10,7 +10,7 @@
         :section="section"
       >
         <Skills
-          v-if="section.title === 'Skills' && section.content"
+          v-if="section.title === 'Skills'"
           :skills="
             section.content.filter(
               (item) => 'text' in item && 'image' in item && 'grade' in item
