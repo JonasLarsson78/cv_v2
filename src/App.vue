@@ -1,6 +1,6 @@
 <template>
   <Error v-if="error" :error="error" />
-  <div v-else-if="content && content.header" class="cv-container">
+  <div v-else-if="content.header" class="cv-container">
     <Header :content="content" />
 
     <main class="cv-main">
@@ -28,21 +28,14 @@ import Header from './components/Header.vue'
 import Section from './components/Section.vue'
 import Skills from './components/Skills.vue'
 import Error from './components/Error.vue'
+import contentData from './data/cv-content.json'
 
-const content = ref(null)
+const content = ref(contentData)
 const error = ref<string | null>(null)
 
-onMounted(async () => {
+onMounted(() => {
   document.title = 'Jonas CV'
   const dev = import.meta.env.DEV
-
-  let contentData
-  if (dev) {
-    contentData = await import('../public/data/cv-content.json')
-  } else {
-    const response = await fetch('/data/cv-content.json')
-    contentData = await response.json()
-  }
 
   content.value = contentData
 })
