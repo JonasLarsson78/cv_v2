@@ -31,20 +31,11 @@ import Error from './components/Error.vue'
 import contentData from './assets/data/cv-content.json'
 
 const content = ref(contentData)
-const error = ref<string | null>(null) // Allow both null and string
+const error = ref<string | null>(null)
 
-onMounted(async () => {
+onMounted(() => {
   document.title = 'Jonas CV'
-  try {
-    const response = await fetch('/src/assets/data/cv-content.json')
-    if (!response.ok) {
-      throw new Error(`HTTP error! status: ${response.status}`)
-    }
-    content.value = await response.json()
-  } catch (err) {
-    error.value = (err as Error).message
-    console.error('Error loading JSON:', err)
-  }
+  content.value = contentData
 })
 </script>
 
