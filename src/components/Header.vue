@@ -1,7 +1,7 @@
 <template>
   <header class="cv-header">
     <div class="profile-picture">
-      <img src="/src/assets/jpg/jonas_2025_05.jpg" alt="Profile Picture" />
+      <img src="/jpg/jonas_2025_05.jpg" alt="Profile Picture" />
     </div>
     <div class="header-info">
       <h1 class="name">

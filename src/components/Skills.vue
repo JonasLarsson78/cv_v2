@@ -38,8 +38,7 @@ const props = defineProps({
 const resolvedSkills = computed(() => {
   return props.skills?.map((skill) => ({
     ...skill,
-    image: new URL(skill.image.replace('/src/compnents/', ''), import.meta.url)
-      .href,
+    image: new URL(skill.image, import.meta.url).href,
   }))
 })
 </script>

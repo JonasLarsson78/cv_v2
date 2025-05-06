@@ -78,92 +78,92 @@
       "title": "Skills",
       "content": [
         {
-          "image": "/src/assets/svg/html.svg",
+          "image": "/svg/html.svg",
           "text": "HTML",
           "grade": 5
         },
         {
-          "image": "/src/assets/svg/vue.svg",
+          "image": "/svg/vue.svg",
           "text": "Vue",
           "grade": 4
         },
         {
-          "image": "/src/assets/svg/css.svg",
+          "image": "/svg/css.svg",
           "text": "CSS",
           "grade": 4
         },
         {
-          "image": "/src/assets/svg/sass.svg",
+          "image": "/svg/sass.svg",
           "text": "SASS",
           "grade": 4
         },
         {
-          "image": "/src/assets/svg/node.svg",
+          "image": "/svg/node.svg",
           "text": "Node",
           "grade": 5
         },
         {
-          "image": "/src/assets/svg/npm.svg",
+          "image": "/svg/npm.svg",
           "text": "Npm",
           "grade": 3
         },
         {
-          "image": "/src/assets/svg/js.svg",
+          "image": "/svg/js.svg",
           "text": "Javascript",
           "grade": 4
         },
         {
-          "image": "/src/assets/svg/ts.svg",
+          "image": "/svg/ts.svg",
           "text": "Typescript",
           "grade": 3
         },
         {
-          "image": "/src/assets/svg/react.svg",
+          "image": "/svg/react.svg",
           "text": "React",
           "grade": 3
         },
         {
-          "image": "/src/assets/svg/vite.svg",
+          "image": "/svg/vite.svg",
           "text": "Vite",
           "grade": 3
         },
         {
-          "image": "/src/assets/svg/pinia.svg",
+          "image": "/svg/pinia.svg",
           "text": "Pinia",
           "grade": 4
         },
         {
-          "image": "/src/assets/svg/graphql.svg",
+          "image": "/svg/graphql.svg",
           "text": "Graphql",
           "grade": 4
         },
         {
-          "image": "/src/assets/svg/docker.svg",
+          "image": "/svg/docker.svg",
           "text": "Docker",
           "grade": 3
         },
         {
-          "image": "/src/assets/svg/github.svg",
+          "image": "/svg/github.svg",
           "text": "Github",
           "grade": 4
         },
         {
-          "image": "/src/assets/svg/postman.svg",
+          "image": "/svg/postman.svg",
           "text": "Postman",
           "grade": 4
         },
         {
-          "image": "/src/assets/svg/figma.svg",
+          "image": "/svg/figma.svg",
           "text": "Figma",
           "grade": 3
         },
         {
-          "image": "/src/assets/svg/go.svg",
+          "image": "/svg/go.svg",
           "text": "Go",
           "grade": 3
         },
         {
-          "image": "/src/assets/svg/mysql.svg",
+          "image": "/svg/mysql.svg",
           "text": "MySQL",
           "grade": 3
         }
