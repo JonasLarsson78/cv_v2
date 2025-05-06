@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <linearGradient id="subtle-gradient" x1="0" y1="0" x2="1" y2="1" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#1a1a1a" />
+      <stop offset="50%" stop-color="#0f0f0f" />
+      <stop offset="100%" stop-color="#1a1a1a" />
+    </linearGradient>
+    <pattern id="new-small-pattern" width="30" height="30" patternUnits="userSpaceOnUse">
+      <circle cx="15" cy="15" r="5" fill="none" stroke="#444444" stroke-width="0.5" />
+      <line x1="15" y1="0" x2="15" y2="10" stroke="#444444" stroke-width="0.5" />
+      <line x1="15" y1="20" x2="15" y2="30" stroke="#444444" stroke-width="0.5" />
+      <line x1="0" y1="15" x2="10" y2="15" stroke="#444444" stroke-width="0.5" />
+      <line x1="20" y1="15" x2="30" y2="15" stroke="#444444" stroke-width="0.5" />
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="url(#subtle-gradient)" />
+  <rect width="800" height="600" fill="url(#new-small-pattern)" />
+</svg>

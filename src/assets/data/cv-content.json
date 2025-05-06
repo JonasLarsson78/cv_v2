@@ -1,0 +1,173 @@
+{
+  "header": {
+    "name": "Jonas Larsson",
+    "role": "System Developer",
+    "summary": "Hi, everyone! My name is Jonas and I'm a frontend developer at Zmarta.I love building user interfaces and making websites that are easy to use and visually appealing. At Zmarta, I'm responsible for building forms that help users compare loans online. It's a challenging yet rewarding task, and I take pride in the work I do to make the loan comparison process as smooth and easy as possible. <br><br>As a frontend developer, I'm constantly learning and staying up-to-date with the latest trends and best practices in the field. I'm excited to see where this new technology will take us in the future! Thanks for taking the time to get to know me a little better. I'm looking forward to sharing more of my experiences and insights with all of you!",
+    "socialLinks": [
+      {
+        "icon": "fab fa-linkedin",
+        "url": "https://www.linkedin.com/in/jonlarsson/"
+      },
+      {
+        "icon": "fab fa-github",
+        "url": "https://github.com/JonasLarsson78"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "url": "mailto:jl.7804@gmail.com"
+      }
+    ]
+  },
+  "sections": [
+    {
+      "title": "Education",
+      "content": [
+        {
+          "heading": "Aug 2018 - May 2020 | EC Utbildning",
+          "subheading": "Frontend Developer YH",
+          "description": "Frontend Developer YH program at EC Utbildning in Helsingborg, Sweden. The program focused on web development, including HTML, CSS, JavaScript, and various frameworks and libraries."
+        }
+      ]
+    },
+    {
+      "title": "Contact",
+      "content": [
+        {
+          "icon": "fas fa-map-marker-alt",
+          "text": "Lägervägen 23A, 254 20 Helsingborg",
+          "url": "https://www.google.com/maps/place/L%C3%A4gerv%C3%A4gen+23A,+254+20+Helsingborg/@56.046679,12.694658,17z/data=!3m1!4b1!4m6!3m5!1s0x4652c7f8e9a2d5b7:0x8f6a0c9e2d5b8f7b!8m2!3d56.046679!4d12.6968467!16s%2Fg%2F11c1qjv_5l"
+        },
+        {
+          "icon": "fas fa-phone",
+          "text": "0706-444922",
+          "url": "tel:0706444922"
+        },
+        {
+          "icon": "fas fa-envelope",
+          "text": "jl.7804@gmail.com",
+          "url": "mailto:jl.7804@gmail.com"
+        }
+      ]
+    },
+    {
+      "title": "Experience",
+      "content": [
+        {
+          "heading": "System developer",
+          "date": "Aug 2020 - Present",
+          "details": ["Zmarta AB Skåne Ängelholm"]
+        },
+        {
+          "heading": "Frontend Developer",
+          "date": "Mars 2020 - May 2020",
+          "details": ["Praktik(LIA2) - Sogeti Skåne Helsingborg"]
+        },
+        {
+          "heading": "Frontend Developer",
+          "date": "Sept 2019 - Dec 2019",
+          "details": ["Praktik(LIA1) - Sogeti Skåne Helsingborg"]
+        },
+        {
+          "heading": "Delivery driver",
+          "date": "Mars 2017 - Dec 2017",
+          "details": ["Schenker Åker AB", "Worked on delivering packages."]
+        }
+      ]
+    },
+    {
+      "title": "Skills",
+      "content": [
+        {
+          "image": "/src/assets/svg/html.svg",
+          "text": "HTML",
+          "grade": 5
+        },
+        {
+          "image": "/src/assets/svg/vue.svg",
+          "text": "Vue",
+          "grade": 4
+        },
+        {
+          "image": "/src/assets/svg/css.svg",
+          "text": "CSS",
+          "grade": 4
+        },
+        {
+          "image": "/src/assets/svg/sass.svg",
+          "text": "SASS",
+          "grade": 4
+        },
+        {
+          "image": "/src/assets/svg/node.svg",
+          "text": "Node",
+          "grade": 5
+        },
+        {
+          "image": "/src/assets/svg/npm.svg",
+          "text": "Npm",
+          "grade": 3
+        },
+        {
+          "image": "/src/assets/svg/js.svg",
+          "text": "Javascript",
+          "grade": 4
+        },
+        {
+          "image": "/src/assets/svg/ts.svg",
+          "text": "Typescript",
+          "grade": 3
+        },
+        {
+          "image": "/src/assets/svg/react.svg",
+          "text": "React",
+          "grade": 3
+        },
+        {
+          "image": "/src/assets/svg/vite.svg",
+          "text": "Vite",
+          "grade": 3
+        },
+        {
+          "image": "/src/assets/svg/pinia.svg",
+          "text": "Pinia",
+          "grade": 4
+        },
+        {
+          "image": "/src/assets/svg/graphql.svg",
+          "text": "Graphql",
+          "grade": 4
+        },
+        {
+          "image": "/src/assets/svg/docker.svg",
+          "text": "Docker",
+          "grade": 3
+        },
+        {
+          "image": "/src/assets/svg/github.svg",
+          "text": "Github",
+          "grade": 4
+        },
+        {
+          "image": "/src/assets/svg/postman.svg",
+          "text": "Postman",
+          "grade": 4
+        },
+        {
+          "image": "/src/assets/svg/figma.svg",
+          "text": "Figma",
+          "grade": 3
+        },
+        {
+          "image": "/src/assets/svg/go.svg",
+          "text": "Go",
+          "grade": 3
+        },
+        {
+          "image": "/src/assets/svg/mysql.svg",
+          "text": "MySQL",
+          "grade": 3
+        }
+      ]
+    }
+  ]
+}

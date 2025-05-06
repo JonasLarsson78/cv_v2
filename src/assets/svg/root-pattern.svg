@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" fill="none">
+  <defs>
+    <pattern id="circuit-board-pattern" width="80" height="80" patternUnits="userSpaceOnUse">
+      <!-- Horizontal and vertical lines -->
+      <line x1="0" y1="40" x2="80" y2="40" stroke="#888888" stroke-width="1" />
+      <line x1="40" y1="0" x2="40" y2="80" stroke="#888888" stroke-width="1" />
+
+      <!-- Circles at intersections -->
+      <circle cx="40" cy="40" r="5" fill="#888888" />
+      <circle cx="0" cy="40" r="3" fill="#888888" />
+      <circle cx="80" cy="40" r="3" fill="#888888" />
+      <circle cx="40" cy="0" r="3" fill="#888888" />
+      <circle cx="40" cy="80" r="3" fill="#888888" />
+
+      <!-- Diagonal paths -->
+      <path d="M 0 0 L 40 40" stroke="#888888" stroke-width="0.5" />
+      <path d="M 80 0 L 40 40" stroke="#888888" stroke-width="0.5" />
+      <path d="M 0 80 L 40 40" stroke="#888888" stroke-width="0.5" />
+      <path d="M 80 80 L 40 40" stroke="#888888" stroke-width="0.5" />
+    </pattern>
+  </defs>
+  <rect width="800" height="600" fill="#0d0d0d" />
+  <rect width="800" height="600" fill="url(#circuit-board-pattern)" />
+</svg>
