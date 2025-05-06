@@ -22,6 +22,7 @@
         />
       </Section>
     </main>
+    <Footer :sections="content?.sections || []" />
   </div>
 </template>
 
@@ -32,6 +33,7 @@ import Section from './components/Section.vue'
 import Skills from './components/Skills.vue'
 import Error from './components/Error.vue'
 import Menu from './components/Menu.vue'
+import Footer from './components/Footer.vue'
 import contentData from './data/cv-content.json'
 
 type ContentType = {
