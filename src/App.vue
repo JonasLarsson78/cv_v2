@@ -1,6 +1,8 @@
 <template>
   <Error v-if="error" :error="error" />
-  <div v-else-if="content.header" class="cv-container">
+  <div v-else-if="content && content.header" class="cv-container">
+    <Menu :sections="content.sections || []" />
+
     <Header :content="content" />
 
     <main class="cv-main">
@@ -8,6 +10,7 @@
         v-for="section in content.sections"
         :key="section.title"
         :section="section"
+        :id="section.title.toLowerCase().replace(/\s+/g, '-')"
       >
         <Skills
           v-if="section.title === 'Skills'"
@@ -28,9 +31,10 @@ import Header from './components/Header.vue'
 import Section from './components/Section.vue'
 import Skills from './components/Skills.vue'
 import Error from './components/Error.vue'
+import Menu from './components/Menu.vue'
 import contentData from './data/cv-content.json'
 
-const content = ref(contentData)
+const content = ref(null)
 const error = ref<string | null>(null)
 
 onMounted(() => {

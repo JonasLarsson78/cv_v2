@@ -46,6 +46,11 @@
           "icon": "fas fa-envelope",
           "text": "jl.7804@gmail.com",
           "url": "mailto:jl.7804@gmail.com"
+        },
+        {
+          "icon": "fas fa-globe",
+          "text": "Curriculum vitae",
+          "url": "https://cv-v2-sage.vercel.app"
         }
       ]
     },
