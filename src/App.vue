@@ -22,7 +22,7 @@
         />
       </Section>
     </main>
-    <Footer :sections="content?.sections || []" />
+    <Footer :footer="content?.footer" />
   </div>
 </template>
 
@@ -36,7 +36,7 @@ import Menu from './components/Menu.vue'
 import Footer from './components/Footer.vue'
 import contentData from './data/cv-content.json'
 
-type ContentType = {
+export type ContentType = {
   header: {
     name: string
     role: string
@@ -61,6 +61,16 @@ type ContentType = {
         content: { image: string; text: string; grade: number }[]
       }
   )[]
+  footer?: {
+    copyright?: string
+    text: string
+    cv?: {
+      text: string
+      text2: string
+      url: string
+    }
+    links?: { label: string; url: string }[]
+  }
 }
 
 const content = ref<ContentType | null>(null)

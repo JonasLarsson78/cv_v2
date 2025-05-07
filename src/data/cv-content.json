@@ -18,6 +18,15 @@
       }
     ]
   },
+  "footer": {
+    "copyright": "© 2023 Jonas Larsson. All rights reserved.",
+    "text": "Made with ❤️ using Vue 3 + TypeScript + Vite",
+    "cv": {
+      "text": "Cv on",
+      "text2": "Github",
+      "url": "https://github.com/JonasLarsson78/cv_v2"
+    }
+  },
   "sections": [
     {
       "title": "Education",

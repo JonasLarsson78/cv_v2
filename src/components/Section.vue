@@ -62,12 +62,12 @@ defineProps({
   }
 
   a {
-    color: #ffffffde;
+    color: var(--fancy-color);
     text-decoration: none;
     margin-left: 5px;
 
     &:hover {
-      color: var(--fancy-color);
+      color: #ffffffde;
     }
   }
 
