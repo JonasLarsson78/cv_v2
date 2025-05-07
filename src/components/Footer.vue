@@ -12,8 +12,6 @@
 </template>
 
 <script setup lang="ts">
-import type { ContentType } from '../App.vue'
-
 defineProps({
   footer: {
     type: Object as () => ContentType['footer'],
