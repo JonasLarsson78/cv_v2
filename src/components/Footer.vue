@@ -1,6 +1,6 @@
 <template>
   <footer class="cv-footer">
-    <div v-if="footer?.copyright">{{ footer?.copyright }}</div>
+    <div v-if="copy">{{ footer?.copyright }}</div>
     <div v-if="footer?.text">{{ footer?.text }}</div>
     <div v-if="footer?.cv">
       {{ footer?.cv.text }}
@@ -12,11 +12,17 @@
 </template>
 
 <script setup lang="ts">
-defineProps({
+import { computed } from 'vue'
+const props = defineProps({
   footer: {
     type: Object as () => ContentType['footer'],
     required: true,
   },
+})
+
+const copy = computed(() => {
+  const year = new Date().getFullYear()
+  return props.footer?.copyright.replace('{{year}}', year)
 })
 </script>
 
