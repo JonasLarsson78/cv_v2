@@ -2,7 +2,12 @@
   <section class="skills-section">
     <div class="skills-container">
       <div v-for="skill in resolvedSkills" :key="skill.text" class="skill-item">
-        <img :src="skill.image" :alt="skill.text" class="skill-image" />
+        <img
+          :src="skill.image"
+          :alt="skill.text"
+          class="skill-image"
+          @click="toggleModal(skill)"
+        />
         <p>{{ skill.text }}</p>
         <div class="skill-grade" style="margin: 0 auto">
           <span>1</span>
@@ -16,16 +21,29 @@
       </div>
     </div>
   </section>
+  <div v-if="modal">
+    <div class="modal">
+      <h2>{{ modalContent?.text }}</h2>
+      <img :src="modalContent?.image" :alt="modalContent?.text" />
+      <p>Grade: {{ modalContent?.grade }}</p>
+      <p v-if="modalContent?.description">{{ modalContent?.description }}</p>
+      <button @click="toggleModal(null)">Close</button>
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
 
 interface Skill {
   text: string
   image: string
   grade: number
+  description?: string // Add optional description property
 }
+
+const modal = ref(false)
+const modalContent = ref<Skill | null>(null) // Properly type modalContent
 
 const props = defineProps({
   skills: {
@@ -41,6 +59,22 @@ const resolvedSkills = computed(() => {
     image: new URL(skill.image, import.meta.url).href,
   }))
 })
+
+const toggleModal = (skill: Skill | null) => {
+  if (skill === null) {
+    modal.value = false
+    modalContent.value = null
+    return
+  }
+
+  if (skill.text === modalContent.value?.text) {
+    modal.value = false
+    modalContent.value = null
+  } else {
+    modal.value = true
+    modalContent.value = skill
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -59,6 +93,7 @@ const resolvedSkills = computed(() => {
       .skill-image {
         width: 50px;
         height: 50px;
+        cursor: pointer;
       }
 
       .skill-grade {
@@ -80,6 +115,28 @@ const resolvedSkills = computed(() => {
         }
       }
     }
+  }
+}
+
+.modal {
+  background-color: #121212;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(var(--fancy-color-rgb), 0.5);
+  color: #fff;
+  border: 2px solid var(--fancy-color);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 20px;
+
+  img {
+    width: 30px;
+    height: 30px;
+  }
+
+  @media (max-width: 768px) {
+    display: none;
   }
 }
 </style>

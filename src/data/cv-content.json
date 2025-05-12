@@ -94,92 +94,110 @@
         {
           "image": "/svg/html.svg",
           "text": "HTML",
-          "grade": 5
+          "grade": 5,
+          "description": "I have a strong understanding of HTML and its semantic elements. I can create well-structured and accessible web pages."
         },
         {
           "image": "/svg/vue.svg",
           "text": "Vue",
-          "grade": 4
+          "grade": 4,
+          "description": "I have experience with Vue.js and its ecosystem, including Vue Router and Vuex. I can build dynamic and interactive web applications using Vue."
         },
         {
           "image": "/svg/css.svg",
           "text": "CSS",
-          "grade": 4
+          "grade": 4,
+          "description": "I have a solid understanding of CSS and its features, including Flexbox and Grid. I can create responsive and visually appealing layouts."
         },
         {
           "image": "/svg/sass.svg",
           "text": "SASS",
-          "grade": 4
+          "grade": 4,
+          "description": "I have experience with SASS and its features, including variables, nesting, and mixins. I can write maintainable and modular CSS using SASS."
         },
         {
           "image": "/svg/node.svg",
           "text": "Node",
-          "grade": 5
+          "grade": 5,
+          "description": "I have a strong understanding of Node.js and its ecosystem. I can build server-side applications and APIs using Node."
         },
         {
           "image": "/svg/npm.svg",
           "text": "Npm",
-          "grade": 3
+          "grade": 3,
+          "description": "I have experience with npm and its features, including package management and scripts. I can manage dependencies and automate tasks using npm."
         },
         {
           "image": "/svg/js.svg",
           "text": "Javascript",
-          "grade": 4
+          "grade": 4,
+          "description": "I have a solid understanding of JavaScript and its features, including ES6+ syntax. I can write clean and efficient code using JavaScript."
         },
         {
           "image": "/svg/ts.svg",
           "text": "Typescript",
-          "grade": 3
+          "grade": 3,
+          "description": "I have experience with TypeScript and its features, including static typing and interfaces. I can write type-safe code using TypeScript."
         },
         {
           "image": "/svg/react.svg",
           "text": "React",
-          "grade": 3
+          "grade": 3,
+          "description": "I have experience with React and its ecosystem, including React Router and Redux. I can build dynamic and interactive web applications using React."
         },
         {
           "image": "/svg/vite.svg",
           "text": "Vite",
-          "grade": 3
+          "grade": 3,
+          "description": "I have experience with Vite and its features, including fast development and build times. I can set up and configure Vite for my projects."
         },
         {
           "image": "/svg/pinia.svg",
           "text": "Pinia",
-          "grade": 4
+          "grade": 4,
+          "description": "I have experience with Pinia and its features, including state management and reactivity. I can use Pinia to manage application state in Vue.js."
         },
         {
           "image": "/svg/graphql.svg",
           "text": "Graphql",
-          "grade": 4
+          "grade": 4,
+          "description": "I have experience with GraphQL and its features, including queries and mutations. I can build APIs using GraphQL and integrate them into my applications."
         },
         {
           "image": "/svg/docker.svg",
           "text": "Docker",
-          "grade": 3
+          "grade": 3,
+          "description": "I have experience with Docker and its features, including containerization and orchestration. I can use Docker to create and manage containers for my applications."
         },
         {
           "image": "/svg/github.svg",
           "text": "Github",
-          "grade": 4
+          "grade": 4,
+          "description": "I have experience with Git and GitHub for version control and collaboration. I can use Git to manage my code and collaborate with others."
         },
         {
           "image": "/svg/postman.svg",
           "text": "Postman",
-          "grade": 4
+          "grade": 4,
+          "description": "I have experience with Postman for API testing and documentation. I can use Postman to test and document my APIs."
         },
         {
           "image": "/svg/figma.svg",
           "text": "Figma",
-          "grade": 3
+          "grade": 3,
+          "description": "I have experience with Figma for UI/UX design and prototyping. I can use Figma to create and collaborate on design projects."
         },
         {
           "image": "/svg/go.svg",
           "text": "Go",
-          "grade": 3
+          "grade": 3,
+          "description": "I have experience with Go and its features, including concurrency and performance. I can build efficient and scalable applications using Go."
         },
         {
           "image": "/svg/mysql.svg",
           "text": "MySQL",
-          "grade": 3
+          "grade": 3,
+          "description": "I have experience with MySQL and its features, including database design and querying. I can use MySQL to manage and query relational databases."
         }
       ]
     }
