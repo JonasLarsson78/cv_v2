@@ -15,8 +15,8 @@
           :class="[{ active: activeSection === section?.title }]"
           :href="'#' + section.title.toLowerCase().replace(/\s+/g, '-')"
           @click="activeSection = section.title"
-          >{{ section.title }}</a
-        >
+          >{{ section.title }}
+        </a>
       </li>
     </ul>
   </nav>
@@ -24,7 +24,7 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onUnmounted } from 'vue'
 import type { PropType } from 'vue'
 
 const props = defineProps({
@@ -35,6 +35,20 @@ const props = defineProps({
 })
 
 const activeSection = ref('Top')
+
+// Add scroll event listener to set activeSection to "Top" when scrolled to the top
+onMounted(() => {
+  const handleScroll = () => {
+    if (window.scrollY === 0) {
+      activeSection.value = 'Top'
+    }
+  }
+  window.addEventListener('scroll', handleScroll)
+  // Cleanup event listener on unmount
+  onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll)
+  })
+})
 </script>
 
 <style scoped lang="scss">
