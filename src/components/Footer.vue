@@ -21,8 +21,10 @@ const props = defineProps({
 })
 
 const copy = computed(() => {
-  const year = new Date().getFullYear()
-  return props.footer?.copyright.replace('{{year}}', year)
+  const year = new Date().getFullYear().toString()
+  return props?.footer?.copyright
+    ? props.footer.copyright.replace('{{year}}', year)
+    : ''
 })
 </script>
 
