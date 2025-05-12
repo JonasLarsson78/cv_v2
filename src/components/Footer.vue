@@ -1,6 +1,6 @@
 <template>
   <footer class="cv-footer">
-    <div v-if="copy">{{ footer?.copyright }}</div>
+    <div v-if="copy">{{ copy }}</div>
     <div v-if="footer?.text">{{ footer?.text }}</div>
     <div v-if="footer?.cv">
       {{ footer?.cv.text }}
@@ -22,8 +22,9 @@ const props = defineProps({
 
 const copy = computed(() => {
   const year = new Date().getFullYear().toString()
-  return props?.footer?.copyright
-    ? props.footer.copyright.replace('{{year}}', year)
+  const copyright = props?.footer?.copyright
+  return typeof copyright === 'string'
+    ? copyright.replace('{{year}}', year)
     : ''
 })
 </script>
