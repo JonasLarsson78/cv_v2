@@ -60,8 +60,7 @@ $fancy-color: #ff6f61;
 .cv-section {
   scroll-margin-top: 60px; /* Adjust this value to match the height of the sticky menu */
   
-  &:nth-last-child(1),
-  &:nth-last-child(2) {
+  &:nth-last-child(1) {
     grid-column: 1 / -1;
   }
 }

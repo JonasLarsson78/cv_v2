@@ -8,8 +8,20 @@
       <p>{{ section.content[0].subheading }}</p>
       <p>{{ section.content[0].description }}</p>
     </div>
-    <ul v-else-if="section.title === 'Certification'">
-      <li v-for="cert in section.content" :key="cert">{{ cert }}</li>
+    <ul v-else-if="section.title === 'Recommendations'">
+      <li v-for="rec in section.content" :key="rec.name">
+        <p><strong>Name:</strong> {{ rec.name }}</p>
+        <p><strong>Company:</strong> {{ rec.company }}</p>
+        <p>
+          <strong>Email:</strong>
+          <a :href="'mailto:' + rec.mail">{{ rec.mail }}</a>
+        </p>
+        <p>
+          <strong>Phone:</strong>
+          <a :href="'tel:' + rec.phone">{{ rec.phone }}</a>
+        </p>
+        <br />
+      </li>
     </ul>
     <div v-else-if="section.title === 'Contact'">
       <p v-for="contact in section.content" :key="contact.text">

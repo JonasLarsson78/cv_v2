@@ -22,6 +22,15 @@ type ContentType = {
         title: string
         content: { image: string; text: string; grade: number }[]
       }
+    | {
+        title: string
+        content: {
+          name: string
+          company: string
+          mail: string
+          phone: string
+        }[]
+      }
   )[]
   footer?: {
     copyright?: string
