@@ -135,13 +135,13 @@
         {
           "image": "/svg/node.svg",
           "text": "Node",
-          "grade": 5,
+          "grade": 4,
           "description": "I have a strong understanding of Node.js and its ecosystem. I can build server-side applications and APIs using Node."
         },
         {
           "image": "/svg/npm.svg",
           "text": "Npm",
-          "grade": 3,
+          "grade": 4,
           "description": "I have experience with npm and its features, including package management and scripts. I can manage dependencies and automate tasks using npm."
         },
         {
@@ -207,7 +207,7 @@
         {
           "image": "/svg/go.svg",
           "text": "Go",
-          "grade": 3,
+          "grade": 2,
           "description": "I have experience with Go and its features, including concurrency and performance. I can build efficient and scalable applications using Go."
         },
         {
