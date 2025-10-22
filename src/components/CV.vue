@@ -14,11 +14,7 @@
       >
         <Skills
           v-if="section?.title === 'Skills'"
-          :skills="
-            section?.content.filter(
-              (item: any) => 'text' in item && 'image' in item && 'grade' in item
-            )
-          "
+          :skills="(section?.content.filter((item: any) => 'text' in item && 'image' in item && 'grade' in item) as any)"
         />
       </Section>
     </main>
