@@ -139,6 +139,7 @@ const onImageError = (event: Event) => {
 }
 
 onMounted(async () => {
+  document.title = 'Projects'
   // Load passwords from JSON file
   try {
     const passwordModule = await import('../data/project-whitelist.json')
