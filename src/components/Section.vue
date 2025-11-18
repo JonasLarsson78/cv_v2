@@ -8,7 +8,7 @@
       <p>{{ section.content[0].subheading }}</p>
       <p>{{ section.content[0].description }}</p>
       <p><a :href="section.content[0].examensbevis" target="
-        _blank">Examensbevis</a></p>
+        _blank">Degree Certificate</a></p>
     </div>
     <ul v-else-if="section.title === 'Recommendations'">
       <li v-for="rec in section.content" :key="rec.name">
