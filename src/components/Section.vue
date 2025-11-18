@@ -7,6 +7,8 @@
       </p>
       <p>{{ section.content[0].subheading }}</p>
       <p>{{ section.content[0].description }}</p>
+      <p><a :href="section.content[0].examensbevis" target="
+        _blank">Examensbevis</a></p>
     </div>
     <ul v-else-if="section.title === 'Recommendations'">
       <li v-for="rec in section.content" :key="rec.name">
@@ -30,11 +32,7 @@
       </p>
     </div>
     <div v-else-if="section.title === 'Experience'">
-      <div
-        v-for="experience in section.content"
-        :key="experience.heading"
-        class="experience-item"
-      >
+      <div v-for="experience in section.content" :key="experience.heading" class="experience-item">
         <h3>{{ experience.heading }}</h3>
         <p>
           <strong>{{ experience.date }}</strong>

@@ -34,7 +34,8 @@
         {
           "heading": "Aug 2018 - May 2020 | EC Utbildning",
           "subheading": "Frontend Developer YH",
-          "description": "Frontend Developer YH program at EC Utbildning in Helsingborg, Sweden. The program focused on web development, including HTML, CSS, JavaScript, and various frameworks and libraries."
+          "examensbevis": "https://file-server-seven.vercel.app/img/jpg/examensbevis.jpg",
+          "description": "Frontend Developer YH program at EC Utbildning in Helsingborg, Sweden. The program focused on web development, including HTML, CSS, JavaScript, React.js and various frameworks and libraries."
         }
       ]
     },
