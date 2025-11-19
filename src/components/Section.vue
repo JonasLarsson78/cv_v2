@@ -1,16 +1,16 @@
 <template>
   <section v-if="section.title" class="cv-section">
     <h2 class="section-title">{{ section.title }}</h2>
-    <div v-if="section.title === 'Education'">
+    <div v-if="section.title === education">
       <p>
         <strong>{{ section.content[0].heading }}</strong>
       </p>
       <p>{{ section.content[0].subheading }}</p>
       <p>{{ section.content[0].description }}</p>
       <p><a :href="section.content[0].examensbevis" target="
-        _blank">Degree Certificate</a></p>
+        _blank">{{ degree }}</a></p>
     </div>
-    <ul v-else-if="section.title === 'Recommendations'">
+    <ul v-else-if="section.title === recommendations">
       <li v-for="rec in section.content" :key="rec.name">
         <p><strong>Name:</strong> {{ rec.name }}</p>
         <p><strong>Company:</strong> {{ rec.company }}</p>
@@ -25,13 +25,13 @@
         <br />
       </li>
     </ul>
-    <div v-else-if="section.title === 'Contact'">
+    <div v-else-if="section.title === contact">
       <p v-for="contact in section.content" :key="contact.text">
         <i :class="contact.icon"></i>
         <a :href="contact.url">{{ contact.text }}</a>
       </p>
     </div>
-    <div v-else-if="section.title === 'Experience'">
+    <div v-else-if="section.title === experience">
       <div v-for="experience in section.content" :key="experience.heading" class="experience-item">
         <h3>{{ experience.heading }}</h3>
         <p>
@@ -56,6 +56,14 @@ defineProps({
     default: () => ({ title: '', content: [] }),
   },
 })
+const local = localStorage.getItem('local')
+
+const education = local !== 'se' ? 'Education' : 'Utbildning'
+const recommendations = local !== 'se' ? 'Recommendations' : 'Rekommendationer'
+const contact = local !== 'se' ? 'Contact' : 'Kontakta'
+const experience = local !== 'se' ? 'Experience' : 'Erfarenhet'
+const degree = local !== 'se' ? 'Degree Certificate' : 'Examensbevis'
+
 </script>
 
 <style lang="scss" scoped>

@@ -1,21 +1,15 @@
 <template>
   <Error v-if="error" :error="error" />
   <div v-else-if="content && content?.header" class="cv-container">
+    <Lang />
+
     <Menu :sections="content?.sections || []" />
-
     <Header :content="content" />
-
     <main class="cv-main">
-      <Section
-        v-for="section in content?.sections"
-        :key="section?.title"
-        :section="section"
-        :id="section?.title.toLowerCase().replace(/\s+/g, '-')"
-      >
-        <Skills
-          v-if="section?.title === 'Skills'"
-          :skills="(section?.content.filter((item: any) => 'text' in item && 'image' in item && 'grade' in item) as any)"
-        />
+      <Section v-for="section in content?.sections" :key="section?.title" :section="section"
+        :id="section?.title.toLowerCase().replace(/\s+/g, '-')">
+        <Skills v-if="section?.title === skills"
+          :skills="(section?.content.filter((item: any) => 'text' in item && 'image' in item && 'grade' in item) as any)" />
       </Section>
     </main>
     <Footer :footer="content?.footer" />
@@ -30,15 +24,27 @@ import Skills from './Skills.vue'
 import Error from './Error.vue'
 import Menu from './Menu.vue'
 import Footer from './Footer.vue'
-import contentData from '../data/cv-content.json'
+import Lang from './LangSelector.vue'
+
+import contentDataEn from '../data/cv-content.json'
+import contentDataSe from '../data/cv-content-se.json'
 
 const content = ref<ContentType | null>(null)
 const error = ref<string | null>(null)
+const local = localStorage.getItem('local')
 
 onMounted(() => {
   document.title = 'Jonas CV'
-  content.value = contentData
+
+  if (local === 'se') {
+    content.value = contentDataSe
+  } else {
+    content.value = contentDataEn
+  }
+
 })
+const skills = local !== 'se' ? 'Skills' : 'Färdigheter'
+
 </script>
 
 <style lang="scss" scoped>
@@ -62,6 +68,7 @@ onMounted(() => {
     0% {
       box-shadow: 0 4px 20px rgba(var(--fancy-color-rgb), 0.5);
     }
+
     100% {
       box-shadow: 0 4px 30px rgba(var(--fancy-color-rgb), 0.8);
     }

@@ -1,0 +1,223 @@
+{
+  "header": {
+    "name": "Jonas Larsson",
+    "role": "Systemutvecklare",
+    "summary": "Hej allihopa! Jag heter Jonas och är en senior frontend-/backutvecklare som älskar att bygga användargränssnitt och skapa webbplatser som är både enkla att använda och visuellt tilltalande. Jag har erfarenhet av att utveckla formulär och verktyg som förenklar komplexa uppgifter för användare – särskilt inom finans och jämförelse. Jag är stolt över att skapa smidiga, intuitiva upplevelser som gör skillnad. <br><br>Som utvecklare lär jag mig alltid och håller mig uppdaterad med de senaste trenderna och bästa praxisen inom webbutveckling. Jag är entusiastisk över vart tekniken är på väg och hur jag kan fortsätta växa tillsammans med den.<br>Tack för att du tog dig tid att lära känna mig lite bättre. Jag ser fram emot att dela fler av mina erfarenheter och insikter med er!",
+    "socialLinks": [
+      {
+        "icon": "fab fa-linkedin",
+        "url": "https://www.linkedin.com/in/jonlarsson/"
+      },
+      {
+        "icon": "fab fa-github",
+        "url": "https://github.com/JonasLarsson78"
+      },
+      {
+        "icon": "fas fa-envelope",
+        "url": "mailto:jl.7804@gmail.com"
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "© {{year}} Jonas Larsson. Alla rättigheter förbehållna.",
+    "text": "Skapad med ❤️ och Vue 3 + TypeScript + Vite",
+    "cv": {
+      "text": "Cv på",
+      "text2": "Github",
+      "url": "https://github.com/JonasLarsson78/cv_v2"
+    }
+  },
+  "sections": [
+    {
+      "title": "Utbildning",
+      "content": [
+        {
+          "heading": "Aug 2018 - Maj 2020 | EC Utbildning",
+          "subheading": "Frontend Developer YH",
+          "examensbevis": "https://file-server-seven.vercel.app/img/jpg/examensbevis.jpg",
+          "description": "Frontend-utvecklare YH-program på EC Utbildning i Helsingborg. Programmet fokuserade på webbutveckling, inklusive HTML, CSS, JavaScript, React.js och olika ramverk och bibliotek."
+        }
+      ]
+    },
+    {
+      "title": "Kontakta",
+      "content": [
+        {
+          "icon": "fas fa-map-marker-alt",
+          "text": "Engelska gången 29C, 254 51 Helsingborg",
+          "url": "https://www.google.com/maps/place/Engelska+g%C3%A5ngen+29C,+254+51+Helsingborg/@56.0777161,12.6893713,17z/data=!3m1!4b1!4m6!3m5!1s0x4652320524b00e51:0xd2336aa25aa5bee6!8m2!3d56.0777161!4d12.6919462!16s%2Fg%2F11c25_pcd0?entry=ttu&g_ep=EgoyMDI1MDkwNy4wIKXMDSoASAFQAw%3D%3D"
+        },
+        {
+          "icon": "fas fa-phone",
+          "text": "0706-444922",
+          "url": "tel:0706444922"
+        },
+        {
+          "icon": "fas fa-envelope",
+          "text": "jl.7804@gmail.com",
+          "url": "mailto:jl.7804@gmail.com"
+        },
+        {
+          "icon": "fas fa-globe",
+          "text": "Curriculum vitae",
+          "url": "https://cv-v2-sage.vercel.app"
+        }
+      ]
+    },
+    {
+      "title": "Erfarenhet",
+      "content": [
+        {
+          "heading": "Systemutvecklare",
+          "date": "Aug 2020 - Aug 2025",
+          "details": ["Zmarta AB Skåne Ängelholm"]
+        },
+        {
+          "heading": "Frontend-utvecklare",
+          "date": "Mars 2020 - May 2020",
+          "details": ["Praktik(LIA2) - Sogeti Skåne Helsingborg"]
+        },
+        {
+          "heading": "Frontend-utvecklare",
+          "date": "Sept 2019 - Dec 2019",
+          "details": ["Praktik(LIA1) - Sogeti Skåne Helsingborg"]
+        },
+        {
+          "heading": "Budbilsförare",
+          "date": "Mars 2017 - Dec 2017",
+          "details": ["Schenker Åker AB", "Arbetade med att leverera paket."]
+        }
+      ]
+    },
+    {
+      "title": "Rekommendationer",
+      "content": [
+        {
+          "name": "Jesper Ekberg",
+          "company": "Zmarta AB",
+          "mail": "jesper.ekberg@mephistopheles.se",
+          "phone": "0703394666"
+        },
+        {
+          "name": "Christoffer Lönnerfors",
+          "company": "Zmarta AB",
+          "mail": "christoffer.lonnerfors@gmail.com",
+          "phone": "0703586538"
+        }
+      ]
+    },
+    {
+      "title": "Färdigheter",
+      "content": [
+        {
+          "image": "/svg/html.svg",
+          "text": "HTML",
+          "grade": 5,
+          "description": "I have a strong understanding of HTML and its semantic elements. I can create well-structured and accessible web pages."
+        },
+        {
+          "image": "/svg/vue.svg",
+          "text": "Vue",
+          "grade": 4,
+          "description": "I have experience with Vue.js and its ecosystem, including Vue Router and Vuex. I can build dynamic and interactive web applications using Vue."
+        },
+        {
+          "image": "/svg/css.svg",
+          "text": "CSS",
+          "grade": 4,
+          "description": "I have a solid understanding of CSS and its features, including Flexbox and Grid. I can create responsive and visually appealing layouts."
+        },
+        {
+          "image": "/svg/sass.svg",
+          "text": "SASS",
+          "grade": 4,
+          "description": "I have experience with SASS and its features, including variables, nesting, and mixins. I can write maintainable and modular CSS using SASS."
+        },
+        {
+          "image": "/svg/node.svg",
+          "text": "Node",
+          "grade": 4,
+          "description": "I have a strong understanding of Node.js and its ecosystem. I can build server-side applications and APIs using Node."
+        },
+        {
+          "image": "/svg/npm.svg",
+          "text": "Npm",
+          "grade": 4,
+          "description": "I have experience with npm and its features, including package management and scripts. I can manage dependencies and automate tasks using npm."
+        },
+        {
+          "image": "/svg/js.svg",
+          "text": "Javascript",
+          "grade": 4,
+          "description": "I have a solid understanding of JavaScript and its features, including ES6+ syntax. I can write clean and efficient code using JavaScript."
+        },
+        {
+          "image": "/svg/ts.svg",
+          "text": "Typescript",
+          "grade": 3,
+          "description": "I have experience with TypeScript and its features, including static typing and interfaces. I can write type-safe code using TypeScript."
+        },
+        {
+          "image": "/svg/react.svg",
+          "text": "React",
+          "grade": 3,
+          "description": "I have experience with React and its ecosystem, including React Router and Redux. I can build dynamic and interactive web applications using React."
+        },
+        {
+          "image": "/svg/vite.svg",
+          "text": "Vite",
+          "grade": 3,
+          "description": "I have experience with Vite and its features, including fast development and build times. I can set up and configure Vite for my projects."
+        },
+        {
+          "image": "/svg/pinia.svg",
+          "text": "Pinia",
+          "grade": 4,
+          "description": "I have experience with Pinia and its features, including state management and reactivity. I can use Pinia to manage application state in Vue.js."
+        },
+        {
+          "image": "/svg/graphql.svg",
+          "text": "Graphql",
+          "grade": 4,
+          "description": "I have experience with GraphQL and its features, including queries and mutations. I can build APIs using GraphQL and integrate them into my applications."
+        },
+        {
+          "image": "/svg/docker.svg",
+          "text": "Docker",
+          "grade": 3,
+          "description": "I have experience with Docker and its features, including containerization and orchestration. I can use Docker to create and manage containers for my applications."
+        },
+        {
+          "image": "/svg/github.svg",
+          "text": "Github",
+          "grade": 4,
+          "description": "I have experience with Git and GitHub for version control and collaboration. I can use Git to manage my code and collaborate with others."
+        },
+        {
+          "image": "/svg/postman.svg",
+          "text": "Postman",
+          "grade": 4,
+          "description": "I have experience with Postman for API testing and documentation. I can use Postman to test and document my APIs."
+        },
+        {
+          "image": "/svg/figma.svg",
+          "text": "Figma",
+          "grade": 3,
+          "description": "I have experience with Figma for UI/UX design and prototyping. I can use Figma to create and collaborate on design projects."
+        },
+        {
+          "image": "/svg/go.svg",
+          "text": "Go",
+          "grade": 2,
+          "description": "I have experience with Go and its features, including concurrency and performance. I can build efficient and scalable applications using Go."
+        },
+        {
+          "image": "/svg/mysql.svg",
+          "text": "MySQL",
+          "grade": 3,
+          "description": "I have experience with MySQL and its features, including database design and querying. I can use MySQL to manage and query relational databases."
+        }
+      ]
+    }
+  ]
+}
