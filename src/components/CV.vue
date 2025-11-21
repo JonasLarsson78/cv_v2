@@ -255,6 +255,7 @@ const skills = local !== 'se' ? 'Skills' : 'Färdigheter'
 
     .cv-section {
       padding: 10px;
+      width: calc(100vw - 160px);
 
       .section-title {
         font-size: 1.2rem;

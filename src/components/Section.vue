@@ -16,7 +16,7 @@
         <p><strong>Company:</strong> {{ rec.company }}</p>
         <p>
           <strong>Email:</strong>
-          <a :href="'mailto:' + rec.mail">{{ rec.mail }}</a>
+          <a class="mobile-text" :href="'mailto:' + rec.mail">{{ rec.mail }}</a>
         </p>
         <p>
           <strong>Phone:</strong>
@@ -77,6 +77,12 @@ const degree = local !== 'se' ? 'Degree Certificate' : 'Examensbevis'
   &:hover {
     transform: translateY(-5px);
     box-shadow: 0 4px 20px rgba(var(--fancy-color-rgb), 0.5);
+  }
+
+  @media (max-width: 480px) {
+    .mobile-text {
+      overflow-wrap: break-word;
+    }
   }
 
   a {
