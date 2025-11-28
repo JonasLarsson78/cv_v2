@@ -1,7 +1,6 @@
 <template>
   <Error v-if="error" :error="error" />
   <div v-else-if="content && content?.header" class="cv-container">
-    <Lang />
 
     <Menu :sections="content?.sections || []" />
     <Header :content="content" />
@@ -25,7 +24,6 @@ import Skills from './Skills.vue'
 import Error from './Error.vue'
 import Menu from './Menu.vue'
 import Footer from './Footer.vue'
-import Lang from './LangSelector.vue'
 
 import contentDataEn from '../data/cv-content.json'
 import contentDataSe from '../data/cv-content-se.json'

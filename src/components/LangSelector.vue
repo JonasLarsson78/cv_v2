@@ -29,15 +29,15 @@ const changeLang = (e: Event) => {
 
 <style style lang="scss" scoped>
 .lang {
-  position: absolute;
-  top: 10px;
-  left: 10px;
+  position: relative;
+  top: 0px;
+  left: 0px;
 
   select {
     width: 80px;
     height: 30px;
     font-size: 20px;
-    border: 2px solid var(--fancy-color);
+    border: 1px solid var(--fancy-color);
     border-radius: 5px;
   }
 }

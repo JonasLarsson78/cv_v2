@@ -19,7 +19,7 @@
     ]
   },
   "footer": {
-    "copyright": "© {{year}} Jonas Larsson. Alla rättigheter förbehållna.",
+    "copyright": "cv_v2 V2.0 © {{year}} Jonas Larsson. Alla rättigheter förbehållna.",
     "text": "Skapad med ❤️ och Vue 3 + TypeScript + Vite",
     "cv": {
       "text": "Cv på",

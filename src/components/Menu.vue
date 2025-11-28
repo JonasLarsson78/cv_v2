@@ -18,7 +18,9 @@
           >{{ section.title }}
         </a>
       </li>
+      
     </ul>
+    <Lang />
   </nav>
   <p v-else>No sections available</p>
 </template>
@@ -26,6 +28,8 @@
 <script setup lang="ts">
 import { ref, onMounted, onUnmounted } from 'vue'
 import type { PropType } from 'vue'
+import Lang from './LangSelector.vue'
+
 
 const props = defineProps({
   sections: {
@@ -61,6 +65,9 @@ onMounted(() => {
   margin-bottom: 20px;
   border: 2px solid var(--fancy-color);
   z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
   ul {
     display: flex;
