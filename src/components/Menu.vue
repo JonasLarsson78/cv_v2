@@ -18,9 +18,8 @@
           >{{ section.title }}
         </a>
       </li>
-      
     </ul>
-    <Lang />
+    <div class="selectors"><Lang /> <Color /></div>
   </nav>
   <p v-else>No sections available</p>
 </template>
@@ -29,7 +28,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import type { PropType } from 'vue'
 import Lang from './LangSelector.vue'
-
+import Color from './ThemeColorSelector.vue'
 
 const props = defineProps({
   sections: {
@@ -90,6 +89,12 @@ onMounted(() => {
         }
       }
     }
+  }
+
+  .selectors {
+    display: flex;
+    gap: 10px;
+    align-items: center;
   }
 
   @media (max-width: 768px) {

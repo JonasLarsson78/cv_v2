@@ -11,6 +11,22 @@ window.addEventListener('resize', resizeCanvas)
 const particles = []
 const particleCount = 100
 
+let particleColor = '#ff6f61'
+const themeColor = localStorage.getItem('themeColor') || 'default'
+
+switch (themeColor) {
+  case 'blue':
+    particleColor = '#1A27BFFF'
+    break
+  case 'green':
+    particleColor = '#26A10EFF'
+    break
+
+  default:
+    particleColor = '#ff6f61'
+    break
+}
+
 for (let i = 0; i < particleCount; i++) {
   particles.push({
     x: Math.random() * canvas.width,
@@ -18,10 +34,7 @@ for (let i = 0; i < particleCount; i++) {
     vx: (Math.random() - 0.5) * 2,
     vy: (Math.random() - 0.5) * 2,
     size: Math.random() * 3 + 1,
-    color:
-      Math.random() < 0.2
-        ? 'rgba(255, 111, 97, 0.7)'
-        : 'rgba(255, 255, 255, 0.7)',
+    color: Math.random() < 0.2 ? particleColor : '#FFFFFFB3',
   })
 }
 
