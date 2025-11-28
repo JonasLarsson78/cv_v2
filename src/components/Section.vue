@@ -42,6 +42,12 @@
             {{ detail }}
           </li>
         </ul>
+        <ul v-if="experience.duties.length" v-for="(duties, index) in experience.duties" :key="index" style="margin-left: 10px;">
+          <h4>{{ duties.header }}</h4>
+          <li v-for="d in duties.items" :key="d" style="text-align: left;">
+            {{ d }}
+          </li>
+        </ul>
       </div>
     </div>
     <slot v-else></slot>
@@ -117,6 +123,10 @@ const degree = local !== 'se' ? 'Degree Certificate' : 'Examensbevis'
 
     h3 {
       font-size: 1.2rem;
+      color: var(--fancy-color);
+    }
+
+    h4 {
       color: var(--fancy-color);
     }
 

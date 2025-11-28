@@ -2,7 +2,7 @@
   "header": {
     "name": "Jonas Larsson",
     "role": "Systemutvecklare",
-    "summary": "Hej allihopa! Jag heter Jonas och är en senior frontend-/backutvecklare som älskar att bygga användargränssnitt och skapa webbplatser som är både enkla att använda och visuellt tilltalande. Jag har erfarenhet av att utveckla formulär och verktyg som förenklar komplexa uppgifter för användare – särskilt inom finans och jämförelse. Jag är stolt över att skapa smidiga, intuitiva upplevelser som gör skillnad. <br><br>Som utvecklare lär jag mig alltid och håller mig uppdaterad med de senaste trenderna och bästa praxisen inom webbutveckling. Jag är entusiastisk över vart tekniken är på väg och hur jag kan fortsätta växa tillsammans med den.<br>Tack för att du tog dig tid att lära känna mig lite bättre. Jag ser fram emot att dela fler av mina erfarenheter och insikter med er!",
+    "summary": "Hej! Jag heter Jonas — en frontend-fokuserad systemutvecklare med 5+ års yrkeserfarenhet av att bygga moderna, skalbara och användarvänliga webbapplikationer. Jag är specialiserad på Vue 3, TypeScript, JavaScript, Node.js och moderna frontend-arkitekturer, och jag har praktisk erfarenhet av React,molndrivna pipelines (AWS), MySQL-databaser, API-integrationer och verktyg som förbättrar utvecklingsflöden. Under mina år på Zmarta arbetade jag med att skapa och förbättra gränssnitt inom finans- och jämförelsetjänster — med fokus på prestanda, tillgänglighet, UX och robust kodkvalitet. Jag brinner för att lösa verkliga problem, skapa enkla lösningar för komplexa flöden och att ständigt utvecklas inom modern webbutveckling.",
     "socialLinks": [
       {
         "icon": "fab fa-linkedin",
@@ -70,22 +70,56 @@
         {
           "heading": "Systemutvecklare",
           "date": "Aug 2020 - Aug 2025",
-          "details": ["Zmarta AB Skåne Ängelholm"]
+          "details": [
+            "Zmarta AB Skåne Ängelholm"
+          ],
+          "duties": [
+            {
+              "header": "Arbetsuppgifter och ansvar:",
+              "items": [
+                "• Utvecklade och förbättrade kundflöden, formulär, dashboards och verktyg i Vue 3 + TypeScript",
+                "• Byggde och underhållde Node.js backend-tjänster och integrerade interna och externa API:er",
+                "• Arbetade med AWS-pipelines för CI/CD och automatiserade distributionsflöden",
+                "• Optimerade prestanda, minskade tekniska skulder och förbättrade UI/UX för konverteringskritiska delar",
+                "• Arbetade nära designteamet med komponenter, designsystem och Figma",
+                "• Hanterade MySQL-databaser och GraphQL-integrationer",
+                "• Tog ansvar för kodkvalitet, kodgranskningar och tekniska beslut inom teamet"
+              ]
+            },
+            {
+              "header": "Exempel på resultat:",
+              "items": [
+                "• Förbättrade sidprestanda med upp till 30-50 % genom cachning, lazy loading och kodoptimeringar",
+                "• Skapade nya interna verktyg som förenklade arbetsflöden och minskade manuell hantering för team",
+                "• Ledde frontend-implementering i flera större projekt"
+              ]
+            }
+          ]
         },
         {
           "heading": "Frontend-utvecklare",
           "date": "Mars 2020 - May 2020",
-          "details": ["Praktik(LIA2) - Sogeti Skåne Helsingborg"]
+          "details": [
+            "Praktik(LIA2) - Sogeti Skåne Helsingborg"
+          ],
+          "duties": []
         },
         {
           "heading": "Frontend-utvecklare",
           "date": "Sept 2019 - Dec 2019",
-          "details": ["Praktik(LIA1) - Sogeti Skåne Helsingborg"]
+          "details": [
+            "Praktik(LIA1) - Sogeti Skåne Helsingborg"
+          ],
+          "duties": []
         },
         {
           "heading": "Budbilsförare",
           "date": "Mars 2017 - Dec 2017",
-          "details": ["Schenker Åker AB", "Arbetade med att leverera paket."]
+          "details": [
+            "Schenker Åker AB",
+            "Arbetade med att leverera paket."
+          ],
+          "duties": []
         }
       ]
     },

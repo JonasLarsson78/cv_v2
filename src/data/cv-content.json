@@ -2,7 +2,7 @@
   "header": {
     "name": "Jonas Larsson",
     "role": "System Developer",
-    "summary": "Hi, everyone! My name is Jonas and I’m a senior frontend / back developer who loves building user interfaces and creating websites that are both easy to use and visually appealing. I have experience developing forms and tools that simplify complex tasks for users – particularly in the finance and comparison space. I take pride in crafting smooth, intuitive experiences that make a difference. <br><br>As a developer, I’m always learning and staying updated with the latest trends and best practices in web development. I’m excited about where technology is heading and how I can continue growing alongside it.<br>Thanks for taking the time to get to know me a little better. I’m looking forward to sharing more of my experiences and insights with you!",
+    "summary": "Hi! My name is Jonas — a front-end-focused systems developer with 5+ years of professional experience building modern, scalable, and user-friendly web applications. I specialize in Vue 3, TypeScript, JavaScript, Node.js, and modern front-end architectures, and I have hands-on experience with React, cloud-powered pipelines (AWS), MySQL databases, API integrations, and tools that improve development workflows. During my years at Zmarta, I worked on creating and improving interfaces in financial and comparison services — focusing on performance, accessibility, UX, and robust code quality. I am passionate about solving real-world problems, creating simple solutions for complex workflows, and constantly evolving in modern web development.",
     "socialLinks": [
       {
         "icon": "fab fa-linkedin",
@@ -70,22 +70,56 @@
         {
           "heading": "System developer",
           "date": "Aug 2020 - Aug 2025",
-          "details": ["Zmarta AB Skåne Ängelholm"]
+          "details": [
+            "Zmarta AB Skåne Ängelholm"
+          ],
+          "duties": [
+            {
+              "header": "Duties & Responsibilities:",
+              "items": [
+                "• Developed and improved customer flows, forms, dashboards and tools in Vue 3 + TypeScript",
+                "• Built and maintained Node.js backend services and integrated internal and external APIs",
+                "• Worked with AWS pipelines for CI/CD and automated deployment flows",
+                "• Optimized performance, reduced technical debt and improved UI/UX for conversion-critical parts",
+                "• Worked closely with the design team with components, design systems and Figma",
+                "• Managed MySQL databases and GraphQL integrations",
+                "• Took responsibility for code quality, code reviews and technical decisions within the team"
+              ]
+            },
+            {
+              "header": "Example of results:",
+              "items": [
+                "• Improved page performance by up to 30-50% through caching, lazy loading and code optimizations",
+                "• Created new internal tools that simplified workflows and reduced manual handling for teams",
+                "• Lead frontend implementation in several major projects"
+              ]
+            }
+          ]
         },
         {
           "heading": "Frontend Developer",
           "date": "Mars 2020 - May 2020",
-          "details": ["Praktik(LIA2) - Sogeti Skåne Helsingborg"]
+          "details": [
+            "Praktik(LIA2) - Sogeti Skåne Helsingborg"
+          ],
+          "duties": []
         },
         {
           "heading": "Frontend Developer",
           "date": "Sept 2019 - Dec 2019",
-          "details": ["Praktik(LIA1) - Sogeti Skåne Helsingborg"]
+          "details": [
+            "Praktik(LIA1) - Sogeti Skåne Helsingborg"
+          ],
+          "duties": []
         },
         {
           "heading": "Delivery driver",
           "date": "Mars 2017 - Dec 2017",
-          "details": ["Schenker Åker AB", "Worked on delivering packages."]
+          "details": [
+            "Schenker Åker AB",
+            "Worked on delivering packages."
+          ],
+          "duties": []
         }
       ]
     },
