@@ -77,21 +77,21 @@
             {
               "header": "Arbetsuppgifter och ansvar:",
               "items": [
-                "• Utvecklade och förbättrade kundflöden, formulär, dashboards och verktyg i Vue 3 + TypeScript",
-                "• Byggde och underhållde Node.js backend-tjänster och integrerade interna och externa API:er",
-                "• Arbetade med AWS-pipelines för CI/CD och automatiserade distributionsflöden",
-                "• Optimerade prestanda, minskade tekniska skulder och förbättrade UI/UX för konverteringskritiska delar",
-                "• Arbetade nära designteamet med komponenter, designsystem och Figma",
-                "• Hanterade MySQL-databaser och GraphQL-integrationer",
-                "• Tog ansvar för kodkvalitet, kodgranskningar och tekniska beslut inom teamet"
+                "Utvecklade och förbättrade kundflöden, formulär, dashboards och verktyg i Vue 3 + TypeScript",
+                "Byggde och underhållde Node.js backend-tjänster och integrerade interna och externa API:er",
+                "Arbetade med AWS-pipelines för CI/CD och automatiserade distributionsflöden",
+                "Optimerade prestanda, minskade tekniska skulder och förbättrade UI/UX för konverteringskritiska delar",
+                "Arbetade nära designteamet med komponenter, designsystem och Figma",
+                "Hanterade MySQL-databaser och GraphQL-integrationer",
+                "Tog ansvar för kodkvalitet, kodgranskningar och tekniska beslut inom teamet"
               ]
             },
             {
               "header": "Exempel på resultat:",
               "items": [
-                "• Förbättrade sidprestanda med upp till 30-50 % genom cachning, lazy loading och kodoptimeringar",
-                "• Skapade nya interna verktyg som förenklade arbetsflöden och minskade manuell hantering för team",
-                "• Ledde frontend-implementering i flera större projekt"
+                "Förbättrade sidprestanda med upp till 30-50 % genom cachning, lazy loading och kodoptimeringar",
+                "Skapade nya interna verktyg som förenklade arbetsflöden och minskade manuell hantering för team",
+                "Ledde frontend-implementering i flera större projekt"
               ]
             }
           ]

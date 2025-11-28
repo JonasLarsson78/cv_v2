@@ -77,21 +77,21 @@
             {
               "header": "Duties & Responsibilities:",
               "items": [
-                "• Developed and improved customer flows, forms, dashboards and tools in Vue 3 + TypeScript",
-                "• Built and maintained Node.js backend services and integrated internal and external APIs",
-                "• Worked with AWS pipelines for CI/CD and automated deployment flows",
-                "• Optimized performance, reduced technical debt and improved UI/UX for conversion-critical parts",
-                "• Worked closely with the design team with components, design systems and Figma",
-                "• Managed MySQL databases and GraphQL integrations",
-                "• Took responsibility for code quality, code reviews and technical decisions within the team"
+                "Developed and improved customer flows, forms, dashboards and tools in Vue 3 + TypeScript",
+                "Built and maintained Node.js backend services and integrated internal and external APIs",
+                "Worked with AWS pipelines for CI/CD and automated deployment flows",
+                "Optimized performance, reduced technical debt and improved UI/UX for conversion-critical parts",
+                "Worked closely with the design team with components, design systems and Figma",
+                "Managed MySQL databases and GraphQL integrations",
+                "Took responsibility for code quality, code reviews and technical decisions within the team"
               ]
             },
             {
               "header": "Example of results:",
               "items": [
-                "• Improved page performance by up to 30-50% through caching, lazy loading and code optimizations",
-                "• Created new internal tools that simplified workflows and reduced manual handling for teams",
-                "• Lead frontend implementation in several major projects"
+                "Improved page performance by up to 30-50% through caching, lazy loading and code optimizations",
+                "Created new internal tools that simplified workflows and reduced manual handling for teams",
+                "Lead frontend implementation in several major projects"
               ]
             }
           ]

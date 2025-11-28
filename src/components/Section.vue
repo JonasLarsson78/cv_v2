@@ -42,7 +42,7 @@
             {{ detail }}
           </li>
         </ul>
-        <ul v-if="experience.duties.length" v-for="(duties, index) in experience.duties" :key="index" style="margin-left: 10px;">
+        <ul v-if="experience.duties.length" v-for="(duties, index) in experience.duties" :key="index" style="margin-left: 40px;list-style: disc;">
           <h4>{{ duties.header }}</h4>
           <li v-for="d in duties.items" :key="d" style="text-align: left;">
             {{ d }}

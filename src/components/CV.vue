@@ -7,7 +7,8 @@
     <Header :content="content" />
     <main class="cv-main">
       <Section v-for="section in content?.sections" :key="section?.title" :section="section"
-        :id="section?.title.toLowerCase().replace(/\s+/g, '-')">
+        :id="section?.title.toLowerCase().replace(/\s+/g, '-')"
+        :class="{ 'full-width': section?.title === experience || section?.title === recommendations }">
         <Skills v-if="section?.title === skills"
           :skills="(section?.content.filter((item: any) => 'text' in item && 'image' in item && 'grade' in item) as any)" />
       </Section>
@@ -44,6 +45,8 @@ onMounted(() => {
 
 })
 const skills = local !== 'se' ? 'Skills' : 'Färdigheter'
+const experience = local !== 'se' ? 'Experience' : 'Erfarenhet'
+const recommendations = local !== 'se' ? 'Recommendations' : 'Rekommendationer'
 
 </script>
 
@@ -136,6 +139,10 @@ const skills = local !== 'se' ? 'Skills' : 'Färdigheter'
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 20px;
+
+    .full-width {
+      grid-column: 1 / -1;
+    }
 
     .cv-section {
       background: rgba(0, 0, 0, 0.8);
