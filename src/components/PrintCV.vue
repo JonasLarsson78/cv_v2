@@ -60,7 +60,8 @@
       <template v-else-if="section.title === 'Contact' || section.title === 'Kontakta'"></template>
 
       <!-- Recommendations Section -->
-      <div v-else-if="section.title === 'Recommendations' || section.title === 'Rekommendationer'" class="recommendations-list">
+      <div v-else-if="section.title === 'Recommendations' || section.title === 'Rekommendationer'"
+        class="recommendations-list">
         <div v-for="rec in section.content" :key="rec.name" class="recommendation-item">
           <strong>{{ rec.name }}</strong>
           <p>{{ rec.company }}</p>
