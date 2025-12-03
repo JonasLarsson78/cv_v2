@@ -17,7 +17,7 @@
       <Color />
     </div>
 
-    <button @click="goToPrint" class="printBtn">Print CV</button>
+    <button @click="goToPrint" class="printBtn">{{ local === 'se' ? 'Skriv ut CV' : 'Print CV' }}</button>
   </nav>
   <p v-else>No sections available</p>
 </template>
@@ -39,6 +39,7 @@ const props = defineProps({
 })
 
 const activeSection = ref('Top')
+const local = localStorage.getItem('local')
 
 // Add scroll event listener to set activeSection to "Top" when scrolled to the top
 onMounted(() => {
