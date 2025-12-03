@@ -2,24 +2,22 @@
   <nav class="cv-menu" v-if="props.sections && sections.length">
     <ul>
       <li>
-        <a
-          :class="[{ active: activeSection === 'Top' }]"
-          href="#top"
-          @click="activeSection = 'Top'"
-          >Top</a
-        >
+        <a :class="[{ active: activeSection === 'Top' }]" href="#top" @click="activeSection = 'Top'">Top</a>
       </li>
       <li>-></li>
       <li v-for="section in props.sections" :key="section.title">
-        <a
-          :class="[{ active: activeSection === section?.title }]"
-          :href="'#' + section.title.toLowerCase().replace(/\s+/g, '-')"
-          @click="activeSection = section.title"
-          >{{ section.title }}
+        <a :class="[{ active: activeSection === section?.title }]"
+          :href="'#' + section.title.toLowerCase().replace(/\s+/g, '-')" @click="activeSection = section.title">{{
+            section.title }}
         </a>
       </li>
     </ul>
-    <div class="selectors"><Lang /> <Color /></div>
+    <div class="selectors">
+      <Lang />
+      <Color />
+    </div>
+
+    <button @click="goToPrint" class="printBtn">Print CV</button>
   </nav>
   <p v-else>No sections available</p>
 </template>
@@ -29,6 +27,9 @@ import { ref, onMounted, onUnmounted } from 'vue'
 import type { PropType } from 'vue'
 import Lang from './LangSelector.vue'
 import Color from './ThemeColorSelector.vue'
+import { useRouter } from 'vue-router'
+
+const router = useRouter()
 
 const props = defineProps({
   sections: {
@@ -52,6 +53,11 @@ onMounted(() => {
     window.removeEventListener('scroll', handleScroll)
   })
 })
+
+
+const goToPrint = () => {
+  router.push({ path: '/print' })
+}
 </script>
 
 <style scoped lang="scss">
@@ -73,21 +79,43 @@ onMounted(() => {
     list-style: none;
     padding: 0;
     margin: 0;
+
     li {
       margin-right: 15px;
+
       a {
         color: #fff;
         text-decoration: none;
         font-weight: bold;
         transition: color 0.3s;
+
         &:hover {
           color: var(--fancy-color);
         }
+
         &.active {
           color: var(--fancy-color);
           text-decoration: underline;
         }
       }
+    }
+  }
+
+  .printBtn {
+    position: fixed;
+    right: 10px;
+    top: 10px;
+    background-color: var(--fancy-color);
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s;
+
+    &:hover {
+      filter: brightness(0.8);
     }
   }
 
