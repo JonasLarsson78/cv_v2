@@ -17,10 +17,10 @@
     </div>
 
     <div v-for="section in content.sections" :key="section.title" class="print-section">
-      <h3 v-if="section.title !== 'Contact'">{{ section.title }}</h3>
+      <h3 v-if="section.title !== 'Contact' && section.title !== 'Kontakta'">{{ section.title }}</h3>
 
       <!-- Experience Section -->
-      <div v-if="section.title === 'Experience'" class="experience-list">
+      <div v-if="section.title === 'Experience' || section.title === 'Erfarenhet'" class="experience-list">
         <div v-for="exp in section.content" :key="exp.heading" class="experience-item">
           <div class="exp-header">
             <strong>{{ exp.heading }}</strong>
@@ -41,35 +41,30 @@
       </div>
 
       <!-- Skills Section -->
-      <div v-else-if="section.title === 'Skills'" class="skills-list">
-        {{section.content.map((s: any) => s.text).join(', ')}}
+      <div v-else-if="section.title === 'Skills' || section.title === 'Färdigheter'" class="skills-list">
+        <span v-for="(skill, index) in section.content" :key="skill.text">
+          <template v-if="index > 0">, </template>{{ skill.text }}
+        </span>
       </div>
 
       <!-- Education Section -->
-      <div v-else-if="section.title === 'Education'" class="education-list">
+      <div v-else-if="section.title === 'Education' || section.title === 'Utbildning'" class="education-list">
         <div v-for="edu in section.content" :key="edu.heading" class="education-item">
           <strong>{{ edu.heading }}</strong>
           <p>{{ edu.subheading }}</p>
-          <p>{{ edu.description }}</p>
+          <p v-if="edu.description">{{ edu.description }}</p>
         </div>
       </div>
 
       <!-- Contact Section (skip - shown in header) -->
-      <template v-else-if="section.title === 'Contact'"></template>
+      <template v-else-if="section.title === 'Contact' || section.title === 'Kontakta'"></template>
 
       <!-- Recommendations Section -->
-      <div v-else-if="section.title === 'Recommendations'" class="recommendations-list">
+      <div v-else-if="section.title === 'Recommendations' || section.title === 'Rekommendationer'" class="recommendations-list">
         <div v-for="rec in section.content" :key="rec.name" class="recommendation-item">
           <strong>{{ rec.name }}</strong>
           <p>{{ rec.company }}</p>
           <p>{{ rec.mail }} | {{ rec.phone }}</p>
-        </div>
-      </div>
-
-      <!-- Generic Section -->
-      <div v-else>
-        <div v-for="(item, index) in section.content" :key="index">
-          <p>{{ JSON.stringify(item) }}</p>
         </div>
       </div>
     </div>
