@@ -65,7 +65,7 @@
         {
           "icon": "fas fa-globe",
           "text": "Personal portfolio",
-          "url": "#",
+          "url": "https://mincv-portfolio.vercel.app",
           "tag": "New"
         }
       ]
