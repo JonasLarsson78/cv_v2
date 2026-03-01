@@ -29,7 +29,7 @@
       <div class="contact-item" v-for="contactItem in section.content" :key="contactItem.text">
         <p>
           <i :class="contactItem.icon"></i>
-          <a :href="contactItem.url">{{ contactItem.text }}</a>
+          <a :href="contactItem.url" target="_blank">{{ contactItem.text }}</a>
         </p>
         <div v-if="contactItem.tag" class="tag">{{ contactItem.tag }}</div>
       </div>
