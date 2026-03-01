@@ -61,6 +61,12 @@
           "icon": "fas fa-globe",
           "text": "Curriculum vitae",
           "url": "https://cv-v2-sage.vercel.app"
+        },
+        {
+          "icon": "fas fa-globe",
+          "text": "Personal portfolio",
+          "url": "#",
+          "tag": "New"
         }
       ]
     },

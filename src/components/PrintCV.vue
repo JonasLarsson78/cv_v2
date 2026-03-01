@@ -43,7 +43,7 @@
       <!-- Skills Section -->
       <div v-else-if="section.title === 'Skills' || section.title === 'Färdigheter'" class="skills-list">
         <span v-for="(skill, index) in section.content" :key="skill.text">
-          <template v-if="index > 0">, </template>{{ skill.text }}
+          <template v-if="(index as number) > 0">, </template>{{ skill.text }}
         </span>
       </div>
 

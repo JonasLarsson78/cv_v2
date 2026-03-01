@@ -26,10 +26,13 @@
       </li>
     </ul>
     <div v-else-if="section.title === contact">
-      <p v-for="contact in section.content" :key="contact.text">
-        <i :class="contact.icon"></i>
-        <a :href="contact.url">{{ contact.text }}</a>
-      </p>
+      <div class="contact-item" v-for="contactItem in section.content" :key="contactItem.text">
+        <p>
+          <i :class="contactItem.icon"></i>
+          <a :href="contactItem.url">{{ contactItem.text }}</a>
+        </p>
+        <div v-if="contactItem.tag" class="tag">{{ contactItem.tag }}</div>
+      </div>
     </div>
     <div v-else-if="section.title === experience">
       <div v-for="experience in section.content" :key="experience.heading" class="experience-item">
@@ -42,7 +45,8 @@
             {{ detail }}
           </li>
         </ul>
-        <ul v-if="experience.duties.length" v-for="(duties, index) in experience.duties" :key="index" style="margin-left: 40px;list-style: disc;">
+        <ul v-if="experience.duties.length" v-for="(duties, index) in experience.duties" :key="index"
+          style="margin-left: 40px;list-style: disc;">
           <h4>{{ duties.header }}</h4>
           <li v-for="d in duties.items" :key="d" style="text-align: left;">
             {{ d }}
@@ -134,5 +138,27 @@ const degree = local !== 'se' ? 'Degree Certificate' : 'Examensbevis'
       margin: 5px 0;
     }
   }
+}
+
+.tag {
+  position: absolute;
+  top: -5px;
+  right: 65px;
+  display: inline-block;
+  background-color: var(--fancy-color);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  margin-top: 4px;
+}
+
+.contact-item {
+  position: relative;
+}
+
+.contact-item p {
+  position: relative;
+  z-index: 1;
 }
 </style>
