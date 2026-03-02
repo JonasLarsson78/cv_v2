@@ -300,7 +300,9 @@ const contactContent = computed(() => {
 }
 
 @media print {
-  html, body {
+
+  html,
+  body {
     margin: 0;
     padding: 0;
     height: 297mm;
@@ -330,9 +332,9 @@ const contactContent = computed(() => {
   }
 
   .print-section h3 {
-  font-size: 9pt;
-  margin-bottom: 3px;
-  padding-bottom: 1px;
+    font-size: 9pt;
+    margin-bottom: 3px;
+    padding-bottom: 1px;
   }
 
   .experience-item {
@@ -347,13 +349,13 @@ const contactContent = computed(() => {
   }
 
   .exp-duties ul li {
-  font-size: 7pt;
-  margin-bottom: 1px;
+    font-size: 7pt;
+    margin-bottom: 1px;
   }
 
   .skills-list {
-  font-size: 7.5pt;
-  line-height: 1.05;
+    font-size: 7.5pt;
+    line-height: 1.05;
   }
 
   .recommendations-list {
@@ -361,20 +363,20 @@ const contactContent = computed(() => {
     gap: 6px;
     display: none;
   }
-    
-    .education-list {
-      display: none;
-    }
 
-    /* Clamp summary to a few lines to save space */
-    .print-section.summary p {
-      display: -webkit-box;
-      -webkit-line-clamp: 3;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-      margin: 0 0 4px 0;
-      font-size: 7.5pt;
-    }
+  .education-list {
+    display: none;
+  }
+
+  /* Clamp summary to a few lines to save space */
+  .print-section.summary p {
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin: 0 0 4px 0;
+    font-size: 7.5pt;
+  }
+
   .print-footer {
     display: none;
   }

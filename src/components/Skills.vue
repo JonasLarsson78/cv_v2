@@ -36,15 +36,18 @@
     </section>
 
   </div>
-  <div v-if="modal">
-    <div class="modal">
-      <h2>{{ modalContent?.text }}</h2>
-      <img :src="modalContent?.image" :alt="modalContent?.text" />
-      <p>Grade: {{ modalContent?.grade }}</p>
-      <p v-if="modalContent?.description">{{ modalContent?.description }}</p>
-      <button @click="toggleModal(null)">Close</button>
+  <teleport to="body">
+    <div v-if="modal" class="modal-wrapper">
+      <div class="modal-backdrop" @click="toggleModal(null)"></div>
+      <div class="modal" role="dialog" aria-modal="true">
+        <h2>{{ modalContent?.text }}</h2>
+        <img :src="modalContent?.image" :alt="modalContent?.text" />
+        <p>Grade: {{ modalContent?.grade }}</p>
+        <p v-if="modalContent?.description">{{ modalContent?.description }}</p>
+        <button @click="toggleModal(null)">Close</button>
+      </div>
     </div>
-  </div>
+  </teleport>
 </template>
 
 <script setup lang="ts">
@@ -384,17 +387,33 @@ const toggleModal = (skill: Skill | null) => {
   }
 }
 
+.modal-wrapper {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+}
+
 .modal {
   background-color: #121212;
   border-radius: 10px;
   box-shadow: 0 4px 20px rgba(var(--fancy-color-rgb), 0.5);
   color: #fff;
   border: 2px solid var(--fancy-color);
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  position: relative;
   padding: 20px;
+  max-width: 680px;
+  width: calc(100% - 40px);
+  z-index: 10001;
+  text-align: center;
 
   img {
     width: 30px;
