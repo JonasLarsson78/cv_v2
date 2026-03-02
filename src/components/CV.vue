@@ -8,8 +8,8 @@
       <Section v-for="section in content?.sections" :key="section?.title" :section="section"
         :id="section?.title.toLowerCase().replace(/\s+/g, '-')"
         :class="{ 'full-width': section?.title === experience || section?.title === recommendations }">
-        <Skills v-if="section?.title === skills"
-          :skills="(section?.content.filter((item: any) => 'text' in item && 'image' in item && 'grade' in item) as any)" />
+        <Skills v-if="section?.title === skills || section?.title === 'Skills' || section?.title === 'Färdigheter'"
+          :section="section" />
       </Section>
     </main>
     <Footer :footer="content?.footer" />
@@ -36,9 +36,9 @@ onMounted(() => {
   document.title = 'Jonas CV'
 
   if (local === 'se') {
-    content.value = contentDataSe
+    content.value = contentDataSe as any
   } else {
-    content.value = contentDataEn
+    content.value = contentDataEn as any
   }
 
 })

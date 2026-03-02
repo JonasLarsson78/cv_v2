@@ -257,6 +257,77 @@
           "grade": 3,
           "description": "I have experience with MySQL and its features, including database design and querying. I can use MySQL to manage and query relational databases."
         }
+      ],
+      "contentV2": [
+        {
+          "category": "Frontend",
+          "items": [
+            { "image": "/svg/html.svg", "text": "HTML", "grade": 5, "order": 1, "description": "Semantisk HTML och tillgänglighet." },
+            { "image": "/svg/css.svg", "text": "CSS", "grade": 4, "order": 2, "description": "Responsiva layouter med Flexbox och Grid." },
+            { "image": "/svg/sass.svg", "text": "SASS", "grade": 4, "order": 3, "description": "Modulär och underhållbar CSS." },
+            { "image": "/svg/js.svg", "text": "Javascript", "grade": 4, "order": 4, "description": "Modern JS (ES6+) för interaktivitet." },
+            { "image": "/svg/ts.svg", "text": "Typescript", "grade": 3, "order": 5, "description": "Typning och bättre utvecklarupplevelse." },
+            { "image": "/svg/vue.svg", "text": "Vue", "grade": 4, "order": 6, "description": "Vue 3, Composition API och ekosystemet." },
+            { "image": "/svg/vue.svg", "text": "Vuex", "grade": 3, "order": 7, "description": "State management (Vue 2/legacy)." },
+            { "image": "/svg/pinia.svg", "text": "Pinia", "grade": 4, "order": 8, "description": "State management för Vue 3." },
+            { "image": "/svg/react.svg", "text": "React", "grade": 3, "order": 9, "description": "Erfarenhet av React-projekt." },
+            { "image": "/svg/vite.svg", "text": "Vite", "grade": 3, "order": 10, "description": "Snabba dev- och byggverktyg." },
+            { "image": "/svg/bootstrap.svg", "text": "Bootstrap", "grade": 3, "order": 11, "description": "Snabb UI-prototypning och komponenter." }
+          ]
+        },
+        {
+          "category": "Backend",
+          "items": [
+            { "image": "/svg/node.svg", "text": "Node", "grade": 4, "order": 1, "description": "Server-sida och API:er med Node.js." },
+            { "image": "/svg/graphql.svg", "text": "Graphql", "grade": 4, "order": 2, "description": "Design och integration av GraphQL-API:er." },
+            { "image": "/svg/go.svg", "text": "Go", "grade": 2, "order": 3, "description": "Grundläggande erfarenhet av Go." },
+            { "image": "/svg/express.svg", "text": "Express", "grade": 4, "order": 4, "description": "Snabbt och minimalistiskt Node.js-ramverk för API:er." }
+          ]
+        },
+        {
+          "category": "Tools & DevOps",
+          "items": [
+            { "image": "/svg/docker.svg", "text": "Docker", "grade": 3, "order": 1, "description": "Containerisering och lokala miljöer." },
+            { "image": "/svg/npm.svg", "text": "Npm", "grade": 4, "order": 2, "description": "Paket- och script-hantering." },
+            { "image": "/svg/github.svg", "text": "Github", "grade": 4, "order": 3, "description": "Versionshantering och PR-flöden." },
+            { "image": "/svg/postman.svg", "text": "Postman", "grade": 4, "order": 4, "description": "API-testning och dokumentation." },
+            { "image": "/svg/vercel.svg", "text": "Vercel", "grade": 3, "order": 5, "description": "Plattform för distribution och hosting." }
+          ,
+            { "image": "/svg/webpack.svg", "text": "Webpack", "grade": 3, "order": 6, "description": "Traditionell bundler och konfiguration." },
+            { "image": "/svg/github.svg", "text": "GitHub Actions", "grade": 4, "order": 7, "description": "CI/CD pipelines och automation." },
+            { "image": "/svg/aws.svg", "text": "AWS", "grade": 3, "order": 8, "description": "Molntjänster och distribution (S3, Lambda etc)." }
+          ]
+        },
+        {
+          "category": "Design & UX",
+          "items": [
+            { "image": "/svg/figma.svg", "text": "Figma", "grade": 3, "order": 1, "description": "UI/UX-design och prototyper." }
+          ]
+        },
+        {
+          "category": "Databaser",
+          "items": [
+            { "image": "/svg/mysql.svg", "text": "MySQL", "grade": 3, "order": 1, "description": "Databasschema och frågor." }
+          ,
+            { "image": "/svg/mongodb.svg", "text": "MongoDB", "grade": 3, "order": 2, "description": "NoSQL-databas för flexibla datamodeller." },
+            { "image": "/svg/sqlite.svg", "text": "SQLite", "grade": 3, "order": 3, "description": "Lättviktsdatabas för lokal utveckling och prototyper." }
+          ]
+        }
+        ,
+        {
+          "category": "Testing",
+          "items": [
+            { "image": "/svg/jest.svg", "text": "Jest", "grade": 3, "order": 1, "description": "Enhetstester och snapshot-testing." },
+            { "image": "/svg/vitest.svg", "text": "Vitest", "grade": 3, "order": 2, "description": "Snabb testkörning för Vite-projekt." }
+          ]
+        },
+        {
+          "category": "Security & Auth",
+          "items": [
+            { "image": "/svg/oauth2.svg", "text": "OAuth2", "grade": 3, "order": 1, "description": "Autentisering och auktorisering av API:er." },
+            { "image": "/svg/jwt.svg", "text": "JWT", "grade": 3, "order": 2, "description": "Token-baserad autentisering och sessionshantering." }
+          ]
+        }
       ]
     }
   ]

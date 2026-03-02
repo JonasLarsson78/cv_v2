@@ -258,6 +258,79 @@
           "description": "I have experience with MySQL and its features, including database design and querying. I can use MySQL to manage and query relational databases."
         }
       ]
+      ,
+      "contentV2": [
+        {
+          "category": "Frontend",
+          "items": [
+            { "image": "/svg/html.svg", "text": "HTML", "grade": 5, "order": 1, "description": "Semantic HTML and accessibility." },
+            { "image": "/svg/css.svg", "text": "CSS", "grade": 4, "order": 2, "description": "Responsive layouts with Flexbox and Grid." },
+            { "image": "/svg/sass.svg", "text": "SASS", "grade": 4, "order": 3, "description": "Modular and maintainable CSS." },
+            { "image": "/svg/js.svg", "text": "Javascript", "grade": 4, "order": 4, "description": "Modern JS (ES6+) for interactivity." },
+            { "image": "/svg/ts.svg", "text": "Typescript", "grade": 3, "order": 5, "description": "Typing and improved DX." },
+            { "image": "/svg/vue.svg", "text": "Vue", "grade": 4, "order": 6, "description": "Vue 3, Composition API and ecosystem." },
+            { "image": "/svg/vue.svg", "text": "Vuex", "grade": 3, "order": 7, "description": "State management (legacy Vuex experience)." },
+            { "image": "/svg/pinia.svg", "text": "Pinia", "grade": 4, "order": 8, "description": "State management for Vue 3." },
+            { "image": "/svg/react.svg", "text": "React", "grade": 3, "order": 9, "description": "Experience from React projects." },
+            { "image": "/svg/vite.svg", "text": "Vite", "grade": 3, "order": 10, "description": "Fast dev and build tooling." },
+            { "image": "/svg/bootstrap.svg", "text": "Bootstrap", "grade": 3, "order": 11, "description": "Rapid UI prototyping and components." }
+          ]
+        },
+        {
+          "category": "Backend",
+          "items": [
+            { "image": "/svg/node.svg", "text": "Node", "grade": 4, "order": 1, "description": "Server-side and APIs with Node.js." },
+            { "image": "/svg/graphql.svg", "text": "Graphql", "grade": 4, "order": 2, "description": "Design and integration of GraphQL APIs." },
+            { "image": "/svg/go.svg", "text": "Go", "grade": 2, "order": 3, "description": "Basic experience with Go." }
+          ,
+            { "image": "/svg/express.svg", "text": "Express", "grade": 4, "order": 4, "description": "Minimal and fast Node.js web framework for APIs." }
+          ]
+        },
+        {
+          "category": "Tools & DevOps",
+          "items": [
+            { "image": "/svg/docker.svg", "text": "Docker", "grade": 3, "order": 1, "description": "Containerization and local environments." },
+            { "image": "/svg/npm.svg", "text": "Npm", "grade": 4, "order": 2, "description": "Package and script management." },
+            { "image": "/svg/github.svg", "text": "Github", "grade": 4, "order": 3, "description": "Version control and PR workflows." },
+            { "image": "/svg/postman.svg", "text": "Postman", "grade": 4, "order": 4, "description": "API testing and documentation." },
+            { "image": "/svg/vercel.svg", "text": "Vercel", "grade": 3, "order": 5, "description": "Deployment and hosting platform." }
+          ,
+            { "image": "/svg/webpack.svg", "text": "Webpack", "grade": 3, "order": 6, "description": "Traditional bundler and configuration." },
+            { "image": "/svg/github.svg", "text": "GitHub Actions", "grade": 4, "order": 7, "description": "CI/CD pipelines and automation." },
+            { "image": "/svg/aws.svg", "text": "AWS", "grade": 3, "order": 8, "description": "Cloud services and deployments (S3, Lambda etc)." }
+          ]
+        },
+        {
+          "category": "Design & UX",
+          "items": [
+            { "image": "/svg/figma.svg", "text": "Figma", "grade": 3, "order": 1, "description": "UI/UX design and prototyping." }
+          ]
+        },
+        {
+          "category": "Databases",
+          "items": [
+            { "image": "/svg/mysql.svg", "text": "MySQL", "grade": 3, "order": 1, "description": "Database schema and queries." }
+          ,
+            { "image": "/svg/mongodb.svg", "text": "MongoDB", "grade": 3, "order": 2, "description": "NoSQL database for flexible data models." },
+            { "image": "/svg/sqlite.svg", "text": "SQLite", "grade": 3, "order": 3, "description": "Lightweight DB for local development and prototypes." }
+          ]
+        }
+        ,
+        {
+          "category": "Testing",
+          "items": [
+            { "image": "/svg/jest.svg", "text": "Jest", "grade": 3, "order": 1, "description": "Unit testing and snapshot testing." },
+            { "image": "/svg/vitest.svg", "text": "Vitest", "grade": 3, "order": 2, "description": "Fast test runner for Vite projects." }
+          ]
+        },
+        {
+          "category": "Security & Auth",
+          "items": [
+            { "image": "/svg/oauth2.svg", "text": "OAuth2", "grade": 3, "order": 1, "description": "Authentication and authorization for APIs." },
+            { "image": "/svg/jwt.svg", "text": "JWT", "grade": 3, "order": 2, "description": "Token-based authentication and session handling." }
+          ]
+        }
+      ]
     }
   ]
 }
