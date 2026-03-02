@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class="print-section">
+    <div class="print-section summary">
       <h3>Summary</h3>
       <p>{{ content.header.summary }}</p>
     </div>
@@ -42,9 +42,24 @@
 
       <!-- Skills Section -->
       <div v-else-if="section.title === 'Skills' || section.title === 'Färdigheter'" class="skills-list">
-        <span v-for="(skill, index) in section.content" :key="skill.text">
-          <template v-if="(index as number) > 0">, </template>{{ skill.text }}
-        </span>
+        <!-- New contentV2 format: categories with items -->
+        <div v-if="section.contentV2 && Array.isArray(section.contentV2)">
+          <div v-for="cat in section.contentV2" :key="cat.category" class="skills-category">
+            <strong>{{ cat.category }}</strong>
+            <div class="skills-items">
+              <span v-for="(item, idx) in cat.items" :key="item.text">
+                <template v-if="(idx as number) > 0">, </template>{{ item.text }}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fallback: older flat content array -->
+        <div v-else>
+          <span v-for="(skill, index) in section.content" :key="skill.text">
+            <template v-if="(index as number) > 0">, </template>{{ skill.text }}
+          </span>
+        </div>
       </div>
 
       <!-- Education Section -->
@@ -279,11 +294,89 @@ const contactContent = computed(() => {
   }
 }
 
+@page {
+  size: A4;
+  margin: 4mm;
+}
+
 @media print {
-  .print-cv {
-    padding: 0;
+  html, body {
     margin: 0;
-    max-width: 100%;
+    padding: 0;
+    height: 297mm;
+  }
+
+  .print-cv {
+    padding: 4mm 6mm;
+    margin: 0;
+    max-width: 210mm;
+    font-size: 7.5pt;
+    line-height: 1.08;
+    color: #000;
+  }
+
+  .print-header h1 {
+    font-size: 16pt;
+    margin-bottom: 2px;
+  }
+
+  .print-header h2 {
+    font-size: 9pt;
+    margin-bottom: 6px;
+  }
+
+  .contact-info {
+    gap: 6px;
+  }
+
+  .print-section h3 {
+  font-size: 9pt;
+  margin-bottom: 3px;
+  padding-bottom: 1px;
+  }
+
+  .experience-item {
+    margin-bottom: 6px;
+  }
+
+  .exp-details p,
+  .education-item p,
+  .recommendation-item p {
+    font-size: 7.5pt;
+    margin: 1px 0;
+  }
+
+  .exp-duties ul li {
+  font-size: 7pt;
+  margin-bottom: 1px;
+  }
+
+  .skills-list {
+  font-size: 7.5pt;
+  line-height: 1.05;
+  }
+
+  .recommendations-list {
+    grid-template-columns: 1fr;
+    gap: 6px;
+    display: none;
+  }
+    
+    .education-list {
+      display: none;
+    }
+
+    /* Clamp summary to a few lines to save space */
+    .print-section.summary p {
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+      margin: 0 0 4px 0;
+      font-size: 7.5pt;
+    }
+  .print-footer {
+    display: none;
   }
 
   .print-section {
