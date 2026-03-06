@@ -20,6 +20,7 @@ Visit the live website: [Jonas Larsson CV](https://cv-v2-jonaslarsson78.vercel.a
 
 ```
 ├── public/                 # Static assets
+│   ├── db/                # SQLite database (cv.sqlite) and schema (db.sql)
 │   ├── jpg/               # JPEG images
 │   ├── png/               # PNG images (including project screenshots)
 │   └── svg/               # SVG icons and graphics
@@ -33,9 +34,9 @@ Visit the live website: [Jonas Larsson CV](https://cv-v2-jonaslarsson78.vercel.a
 │   │   ├── Section.vue    # Reusable section component
 │   │   ├── Skills.vue     # Skills showcase
 │   │   └── LangSelector.vue # Language switcher
-│   ├── data/              # Application data
-│   │   ├── cv-content.json    # English content
-│   │   ├── cv-content-se.json # Swedish content
+│   ├── data/              # Application data (legacy JSON + config)
+│   │   ├── cv-content.json    # Legacy English content (now migrated to SQLite)
+│   │   ├── cv-content-se.json # Legacy Swedish content (now migrated to SQLite)
 │   │   └── project-whitelist.json # Project filtering
 │   ├── router/            # Vue Router configuration
 │   ├── App.vue            # Root component
@@ -57,23 +58,27 @@ Visit the live website: [Jonas Larsson CV](https://cv-v2-jonaslarsson78.vercel.a
 ## 🏃‍♂️ Quick Start
 
 ### Prerequisites
+
 - Node.js (v16 or higher)
 - npm or yarn package manager
 
 ### Installation
 
 1. **Clone the repository**
+
    ```bash
    git clone https://github.com/JonasLarsson78/cv_v2.git
    cd cv_v2
    ```
 
 2. **Install dependencies**
+
    ```bash
    npm install
    ```
 
 3. **Start development server**
+
    ```bash
    npm run dev
    ```
@@ -93,12 +98,18 @@ npm run preview  # Preview production build locally
 
 ### Updating CV Content
 
-The CV content is stored in JSON files in the `src/data/` directory:
+The CV content is now stored in a SQLite database located in `public/db/cv.sqlite`.
 
-- `cv-content.json` - English content
-- `cv-content-se.json` - Swedish content
+- `public/db/cv.sqlite` – runtime database used by the app
+- `public/db/db.sql` – schema + seed data (generated from the original JSON)
 
-Each file contains structured data for:
+The original JSON files in `src/data/` are kept only as reference:
+
+- `cv-content.json` – legacy English content
+- `cv-content-se.json` – legacy Swedish content
+
+The database contains structured data for:
+
 - Personal information and summary
 - Work experience
 - Education
@@ -109,6 +120,7 @@ Each file contains structured data for:
 ### Adding Projects
 
 Projects are managed through:
+
 - `project-whitelist.json` - Controls which projects are displayed
 - Project images stored in `public/png/projects/`
 
@@ -139,6 +151,7 @@ This project is configured for deployment on Vercel with the included `vercel.js
 ### Other Deployment Options
 
 The built application can be deployed to any static hosting service:
+
 - Netlify
 - GitHub Pages
 - AWS S3 + CloudFront
@@ -155,6 +168,7 @@ Created by [Jonas Larsson](https://www.linkedin.com/in/jonlarsson/) - a front-en
 ## 🤝 Contributing
 
 While this is a personal CV website, suggestions and improvements are welcome! Feel free to:
+
 - Report bugs
 - Suggest new features
 - Submit pull requests

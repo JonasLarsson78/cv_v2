@@ -25,22 +25,24 @@ import Error from './Error.vue'
 import Menu from './Menu.vue'
 import Footer from './Footer.vue'
 
-import contentDataEn from '../data/cv-content.json'
-import contentDataSe from '../data/cv-content-se.json'
+import { loadCvContentFromDb } from '../db/cvRepository'
 
 const content = ref<ContentType | null>(null)
 const error = ref<string | null>(null)
 const local = localStorage.getItem('local')
 
-onMounted(() => {
+onMounted(async () => {
   document.title = 'Jonas CV'
 
-  if (local === 'se') {
-    content.value = contentDataSe as any
-  } else {
-    content.value = contentDataEn as any
-  }
+  const lang = local === 'se' ? 'sv' : 'en'
 
+  try {
+    const data = await loadCvContentFromDb(lang)
+    content.value = data as any
+  } catch (e: any) {
+    console.error(e)
+    error.value = 'Kunde inte ladda CV från databasen'
+  }
 })
 const skills = local !== 'se' ? 'Skills' : 'Färdigheter'
 const experience = local !== 'se' ? 'Experience' : 'Erfarenhet'

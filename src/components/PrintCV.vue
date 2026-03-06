@@ -1,5 +1,8 @@
 <template>
-  <div class="print-cv">
+  <div v-if="error" class="print-error">
+    {{ error }}
+  </div>
+  <div v-else-if="content" class="print-cv">
     <div class="print-header">
       <h1>{{ content.header.name }}</h1>
       <h2>{{ content.header.role }}</h2>
@@ -16,24 +19,24 @@
       <p>{{ content.header.summary }}</p>
     </div>
 
-    <div v-for="section in content.sections" :key="section.title" class="print-section">
+    <div v-for="section in (content.sections as any[])" :key="section.title" class="print-section">
       <h3 v-if="section.title !== 'Contact' && section.title !== 'Kontakta'">{{ section.title }}</h3>
 
       <!-- Experience Section -->
       <div v-if="section.title === 'Experience' || section.title === 'Erfarenhet'" class="experience-list">
-        <div v-for="exp in section.content" :key="exp.heading" class="experience-item">
+        <div v-for="exp in (section.content as any[])" :key="(exp as any).heading" class="experience-item">
           <div class="exp-header">
-            <strong>{{ exp.heading }}</strong>
-            <span class="date">{{ exp.date }}</span>
+            <strong>{{ (exp as any).heading }}</strong>
+            <span class="date">{{ (exp as any).date }}</span>
           </div>
-          <div v-if="exp.details" class="exp-details">
-            <p v-for="detail in exp.details" :key="detail">{{ detail }}</p>
+          <div v-if="(exp as any).details" class="exp-details">
+            <p v-for="detail in (exp as any).details" :key="detail">{{ detail }}</p>
           </div>
-          <div v-if="exp.duties && exp.duties.length > 0" class="exp-duties">
-            <div v-for="duty in exp.duties" :key="duty.header">
-              <strong>{{ duty.header }}</strong>
+          <div v-if="(exp as any).duties && (exp as any).duties.length > 0" class="exp-duties">
+            <div v-for="duty in (exp as any).duties" :key="(duty as any).header">
+              <strong>{{ (duty as any).header }}</strong>
               <ul>
-                <li v-for="item in duty.items" :key="item">{{ item }}</li>
+                <li v-for="item in (duty as any).items" :key="item">{{ item }}</li>
               </ul>
             </div>
           </div>
@@ -43,12 +46,12 @@
       <!-- Skills Section -->
       <div v-else-if="section.title === 'Skills' || section.title === 'Färdigheter'" class="skills-list">
         <!-- New contentV2 format: categories with items -->
-        <div v-if="section.contentV2 && Array.isArray(section.contentV2)">
-          <div v-for="cat in section.contentV2" :key="cat.category" class="skills-category">
-            <strong>{{ cat.category }}</strong>
+        <div v-if="(section as any).contentV2 && Array.isArray((section as any).contentV2)">
+          <div v-for="cat in (section as any).contentV2" :key="(cat as any).category" class="skills-category">
+            <strong>{{ (cat as any).category }}</strong>
             <div class="skills-items">
-              <span v-for="(item, idx) in cat.items" :key="item.text">
-                <template v-if="(idx as number) > 0">, </template>{{ item.text }}
+              <span v-for="(item, idx) in (cat as any).items" :key="(item as any).text">
+                <template v-if="(idx as number) > 0">, </template>{{ (item as any).text }}
               </span>
             </div>
           </div>
@@ -56,18 +59,18 @@
 
         <!-- Fallback: older flat content array -->
         <div v-else>
-          <span v-for="(skill, index) in section.content" :key="skill.text">
-            <template v-if="(index as number) > 0">, </template>{{ skill.text }}
+          <span v-for="(skill, index) in (section.content as any[])" :key="(skill as any).text">
+            <template v-if="(index as number) > 0">, </template>{{ (skill as any).text }}
           </span>
         </div>
       </div>
 
       <!-- Education Section -->
       <div v-else-if="section.title === 'Education' || section.title === 'Utbildning'" class="education-list">
-        <div v-for="edu in section.content" :key="edu.heading" class="education-item">
-          <strong>{{ edu.heading }}</strong>
-          <p>{{ edu.subheading }}</p>
-          <p v-if="edu.description">{{ edu.description }}</p>
+        <div v-for="edu in (section.content as any[])" :key="(edu as any).heading" class="education-item">
+          <strong>{{ (edu as any).heading }}</strong>
+          <p>{{ (edu as any).subheading }}</p>
+          <p v-if="(edu as any).description">{{ (edu as any).description }}</p>
         </div>
       </div>
 
@@ -77,10 +80,10 @@
       <!-- Recommendations Section -->
       <div v-else-if="section.title === 'Recommendations' || section.title === 'Rekommendationer'"
         class="recommendations-list">
-        <div v-for="rec in section.content" :key="rec.name" class="recommendation-item">
-          <strong>{{ rec.name }}</strong>
-          <p>{{ rec.company }}</p>
-          <p>{{ rec.mail }} | {{ rec.phone }}</p>
+        <div v-for="rec in (section.content as any[])" :key="(rec as any).name" class="recommendation-item">
+          <strong>{{ (rec as any).name }}</strong>
+          <p>{{ (rec as any).company }}</p>
+          <p>{{ (rec as any).mail }} | {{ (rec as any).phone }}</p>
         </div>
       </div>
     </div>
@@ -90,17 +93,21 @@
 
 <script setup lang="ts">
 import { ref, computed, onMounted } from 'vue'
-import contentDataEn from '../data/cv-content.json'
-import contentDataSe from '../data/cv-content-se.json'
+import { loadCvContentFromDb } from '../db/cvRepository'
 
-const content = ref<any>(contentDataEn)
+const content = ref<ContentType | null>(null)
+const error = ref<string | null>(null)
 const local = localStorage.getItem('local')
 
-onMounted(() => {
-  if (local === 'se') {
-    content.value = contentDataSe
-  } else {
-    content.value = contentDataEn
+onMounted(async () => {
+  const lang = local === 'se' ? 'sv' : 'en'
+
+  try {
+    content.value = await loadCvContentFromDb(lang)
+  } catch (e: any) {
+    console.error(e)
+    error.value = 'Kunde inte ladda CV från databasen'
+    return
   }
 
   // Auto-trigger print dialog
@@ -110,12 +117,25 @@ onMounted(() => {
 })
 
 const contactContent = computed(() => {
-  const contactSection = content.value.sections.find((s: any) => s.title === 'Contact')
+  if (!content.value) return []
+  const contactSection = (content.value.sections as any[]).find(
+    (s: any) => s.title === 'Contact' || s.title === 'Kontakta'
+  )
   return contactSection ? contactSection.content : []
 })
 </script>
 
 <style lang="scss" scoped>
+.print-error {
+  max-width: 210mm;
+  margin: 20px auto;
+  padding: 16px;
+  background: #fee;
+  color: #900;
+  font-family: 'Arial', sans-serif;
+  border: 1px solid #f99;
+}
+
 .print-cv {
   max-width: 210mm;
   margin: 0 auto;
