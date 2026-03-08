@@ -33,6 +33,16 @@ function getSingleRow<T = any>(rows: any[][]): T | null {
 export async function loadCvContentFromDb(lang: DbLanguageCode): Promise<ContentType> {
   const db = await getDb()
 
+  // INFO-BANNER
+  const infoResult = db.exec(
+    `SELECT t.text
+     FROM info i
+     JOIN info_translations t ON t.info_id = i.id
+     WHERE i.id = 1 AND t.language = '${lang}'`
+  )
+  const infoRow = getSingleRow(infoResult[0]?.values || []) as [string] | null
+  const info = infoRow?.[0]
+
   // HEADER
   const headerResult = db.exec(
     `SELECT name, role, summary FROM header_translations WHERE header_id = 1 AND language = '${lang}'`
@@ -261,6 +271,7 @@ export async function loadCvContentFromDb(lang: DbLanguageCode): Promise<Content
   }
 
   return {
+    info,
     header,
     sections,
     footer,

@@ -1,4 +1,5 @@
 type ContentType = {
+  info?: string
   header: {
     name: string
     role: string

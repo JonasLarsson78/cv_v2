@@ -1,15 +1,28 @@
 <template>
+  <InfoBanner :message="content?.info || ''" />
   <Error v-if="error" :error="error" />
   <div v-else-if="content && content?.header" class="cv-container">
-
     <Menu :sections="content?.sections || []" />
     <Header :content="content" />
     <main class="cv-main">
-      <Section v-for="section in content?.sections" :key="section?.title" :section="section"
+      <Section
+        v-for="section in content?.sections"
+        :key="section?.title"
+        :section="section"
         :id="section?.title.toLowerCase().replace(/\s+/g, '-')"
-        :class="{ 'full-width': section?.title === experience || section?.title === recommendations }">
-        <Skills v-if="section?.title === skills || section?.title === 'Skills' || section?.title === 'Färdigheter'"
-          :section="section" />
+        :class="{
+          'full-width':
+            section?.title === experience || section?.title === recommendations,
+        }"
+      >
+        <Skills
+          v-if="
+            section?.title === skills ||
+            section?.title === 'Skills' ||
+            section?.title === 'Färdigheter'
+          "
+          :section="section"
+        />
       </Section>
     </main>
     <Footer :footer="content?.footer" />
@@ -24,6 +37,7 @@ import Skills from './Skills.vue'
 import Error from './Error.vue'
 import Menu from './Menu.vue'
 import Footer from './Footer.vue'
+import InfoBanner from './InfoBanner.vue'
 
 import { loadCvContentFromDb } from '../db/cvRepository'
 
@@ -47,7 +61,6 @@ onMounted(async () => {
 const skills = local !== 'se' ? 'Skills' : 'Färdigheter'
 const experience = local !== 'se' ? 'Experience' : 'Erfarenhet'
 const recommendations = local !== 'se' ? 'Recommendations' : 'Rekommendationer'
-
 </script>
 
 <style lang="scss" scoped>
@@ -149,7 +162,9 @@ const recommendations = local !== 'se' ? 'Recommendations' : 'Rekommendationer'
       padding: 15px;
       border-radius: 12px;
       box-shadow: 0 2px 10px rgba(var(--fancy-color-rgb), 0.3);
-      transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+      transition:
+        transform 0.3s ease-in-out,
+        box-shadow 0.3s ease-in-out;
 
       &:hover {
         transform: translateY(-5px);

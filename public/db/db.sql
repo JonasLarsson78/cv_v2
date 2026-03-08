@@ -42,6 +42,21 @@ CREATE TABLE social_links (
   url TEXT NOT NULL,
   FOREIGN KEY (header_id) REFERENCES header(id)
 );
+-- =========================
+-- 2. INFO + ÖVERSÄTTNINGAR
+-- =========================
+CREATE TABLE info (
+  id INTEGER PRIMARY KEY
+);
+
+CREATE TABLE info_translations (
+  info_id INTEGER NOT NULL,
+  language TEXT NOT NULL,
+  text TEXT NOT NULL,
+  PRIMARY KEY (info_id, language),
+  FOREIGN KEY (info_id) REFERENCES info(id),
+  FOREIGN KEY (language) REFERENCES languages(code)
+);
 
 -- =========================
 -- 3. FOOTER + ÖVERSÄTTNINGAR
@@ -236,7 +251,16 @@ INSERT INTO social_links (id, header_id, icon, url) VALUES
 (3, 1, 'fas fa-envelope', 'mailto:jl.7804@gmail.com');
 
 -- =========================
--- 10. DATA: FOOTER (SV + EN från JSON-filerna)
+-- 10. DATA: INFO (SV + EN)
+-- =========================
+INSERT INTO info (id) VALUES (1);
+
+INSERT INTO info_translations (info_id, language, text) VALUES
+(1, 'sv', 'Info: Den här sidan uppdateras löpande under våren 2026.'),
+(1, 'en', 'Info: This page is continuously updated during spring 2026.');
+
+-- =========================
+-- 11. DATA: FOOTER (SV + EN från JSON-filerna)
 -- =========================
 INSERT INTO footer (id, cv_url) VALUES
 (1, 'https://github.com/JonasLarsson78/cv_v2');
