@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>CV Admin</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+body{font-family:system-ui,sans-serif;background:#0d0f1a;color:#dde1f0;display:flex;min-height:100vh;font-size:14px}
+
+/* sidebar */
+nav{width:200px;min-height:100vh;background:#13162a;border-right:1px solid #1e2240;display:flex;flex-direction:column;padding:1.5rem 0;flex-shrink:0}
+nav h1{font-size:.9rem;color:#7c3aed;letter-spacing:.08em;padding:0 1.25rem 1.25rem;border-bottom:1px solid #1e2240;margin-bottom:.75rem}
+nav a{display:block;padding:.55rem 1.25rem;color:#8892b0;text-decoration:none;font-size:.82rem;border-left:3px solid transparent;transition:all .15s;cursor:pointer}
+nav a:hover{color:#dde1f0;background:#1a1e36}
+nav a.active{color:#a78bfa;border-left-color:#7c3aed;background:#1a1e36}
+
+/* main */
+main{flex:1;padding:2rem;overflow-y:auto;max-width:1200px}
+main h2{font-size:1.1rem;color:#a78bfa;margin-bottom:1.5rem}
+
+/* cards */
+.card{background:#13162a;border:1px solid #1e2240;border-radius:10px;padding:1.25rem;margin-bottom:1rem}
+.card-title{font-size:.8rem;color:#64748b;text-transform:uppercase;letter-spacing:.08em;margin-bottom:1rem}
+
+/* grid */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem}
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem}
+.g4{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:.75rem;align-items:end}
+
+/* fields */
+.field{display:flex;flex-direction:column;gap:.3rem}
+label{font-size:.75rem;color:#64748b;font-weight:500}
+input,textarea,select{background:#0d0f1a;border:1px solid #1e2240;border-radius:6px;color:#dde1f0;padding:.45rem .65rem;font-size:.85rem;font-family:inherit;width:100%;transition:border-color .15s}
+input:focus,textarea:focus,select:focus{outline:none;border-color:#7c3aed}
+textarea{resize:vertical;min-height:80px}
+select option{background:#13162a}
+
+/* buttons */
+.btn{border-radius:6px;font-size:.8rem;font-weight:600;cursor:pointer;transition:all .15s;border:none;padding:.45rem .9rem}
+.btn-primary{background:#7c3aed;color:#fff}.btn-primary:hover{background:#6d28d9}
+.btn-primary:disabled{background:#4c1d95;cursor:not-allowed}
+.btn-ghost{background:transparent;border:1px solid #1e2240;color:#94a3b8}.btn-ghost:hover{border-color:#7c3aed;color:#a78bfa}
+.btn-danger{background:transparent;border:1px solid #450a0a;color:#f87171}.btn-danger:hover{background:#450a0a33}
+.btn-sm{padding:.3rem .6rem;font-size:.75rem}
+.btn-row{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;margin-top:.75rem}
+
+/* list items */
+.list-item{display:flex;justify-content:space-between;align-items:flex-start;gap:1rem;padding:.85rem 1rem;background:#0d0f1a;border:1px solid #1e2240;border-radius:8px;margin-bottom:.5rem}
+.list-item-info{flex:1;min-width:0}
+.list-item-title{font-weight:600;font-size:.9rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.list-item-sub{font-size:.75rem;color:#64748b;margin-top:.2rem}
+.list-item-actions{display:flex;gap:.4rem;flex-shrink:0}
+
+/* duty block */
+.duty-block{background:#0d0f1a;border:1px solid #1e2240;border-radius:8px;padding:1rem;margin-bottom:.75rem}
+.duty-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem}
+.duty-label{font-size:.75rem;color:#7c3aed;font-weight:700}
+
+/* item row */
+.item-row{display:grid;grid-template-columns:1fr 1fr auto;gap:.5rem;align-items:center;margin-bottom:.4rem}
+.btn-x{background:transparent;border:none;color:#f87171;cursor:pointer;font-size:.9rem;padding:.2rem .4rem;line-height:1}
+.btn-x:hover{color:#fca5a5}
+
+/* lang label */
+.lang-badge{display:inline-block;font-size:.65rem;font-weight:700;padding:.15rem .35rem;border-radius:4px;margin-right:.35rem;vertical-align:middle}
+.sv{background:#1e3a5f;color:#93c5fd}.en{background:#1a3326;color:#6ee7b7}
+
+/* toast */
+#toast{position:fixed;bottom:1.5rem;right:1.5rem;padding:.65rem 1.1rem;border-radius:8px;font-size:.85rem;opacity:0;transition:opacity .3s;pointer-events:none;z-index:999}
+#toast.ok{background:#14532d;border:1px solid #166534;color:#bbf7d0;opacity:1}
+#toast.err{background:#7f1d1d;border:1px solid #991b1b;color:#fecaca;opacity:1}
+
+/* divider */
+hr{border:none;border-top:1px solid #1e2240;margin:.75rem 0}
+</style>
+</head>
+<body>
+
+<nav>
+  <h1>CV Admin</h1>
+  <a data-tab="header">Header</a>
+  <a data-tab="info">Info-banner</a>
+  <a data-tab="footer">Footer</a>
+  <a data-tab="social">Sociala länkar</a>
+  <a data-tab="education">Utbildning</a>
+  <a data-tab="contact">Kontakt</a>
+  <a data-tab="experience">Erfarenhet</a>
+  <a data-tab="recommendations">Rekommendationer</a>
+  <a data-tab="skills">Färdigheter</a>
+</nav>
+
+<main id="main"></main>
+<div id="toast"></div>
+
+<script>
+// ── utils ────────────────────────────────────────────────────────────────────
+const $ = id => document.getElementById(id)
+const main = $('main')
+
+function toast(msg, ok = true) {
+  const t = $('toast')
+  t.textContent = msg
+  t.className = ok ? 'ok' : 'err'
+  clearTimeout(t._t)
+  t._t = setTimeout(() => t.className = '', 3000)
+}
+
+async function api(method, path, body) {
+  const r = await fetch(path, {
+    method,
+    headers: body ? { 'Content-Type': 'application/json' } : {},
+    body: body ? JSON.stringify(body) : undefined
+  })
+  const j = await r.json()
+  if (!r.ok) throw new Error(j.error || 'Serverfel')
+  return j
+}
+
+function field(label, name, value = '', type = 'input', opts = '') {
+  if (type === 'textarea') {
+    return `<div class="field"><label>${label}</label><textarea name="${name}">${esc(value)}</textarea></div>`
+  }
+  return `<div class="field"><label>${label}</label><input type="text" name="${name}" value="${esc(value)}" ${opts}/></div>`
+}
+
+function esc(s) { return String(s || '').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;') }
+
+function formData(form) {
+  const fd = new FormData(form)
+  const o = {}
+  for (const [k,v] of fd.entries()) o[k] = v
+  return o
+}
+
+function langRow(content) {
+  return `<div class="g2">${content}</div>`
+}
+
+// ── nav ──────────────────────────────────────────────────────────────────────
+let currentTab = 'header'
+
+document.querySelectorAll('nav a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.querySelectorAll('nav a').forEach(x => x.classList.remove('active'))
+    a.classList.add('active')
+    currentTab = a.dataset.tab
+    renderTab(currentTab)
+  })
+})
+
+function renderTab(tab) {
+  switch(tab) {
+    case 'header': renderHeader(); break
+    case 'info': renderInfo(); break
+    case 'footer': renderFooter(); break
+    case 'social': renderSocial(); break
+    case 'education': renderEducation(); break
+    case 'contact': renderContact(); break
+    case 'experience': renderExperience(); break
+    case 'recommendations': renderRecommendations(); break
+    case 'skills': renderSkills(); break
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// HEADER
+// ═══════════════════════════════════════════════════════════════════════════
+async function renderHeader() {
+  main.innerHTML = '<h2>Header</h2><p style="color:#64748b">Laddar...</p>'
+  const d = await api('GET', '/api/header')
+  main.innerHTML = `
+    <h2>Header</h2>
+    <form id="hForm">
+      <div class="card">
+        <div class="card-title"><span class="lang-badge sv">SV</span></div>
+        ${langRow(field('Namn (sv)', 'name_sv', d.name_sv) + field('Roll (sv)', 'role_sv', d.role_sv))}
+        ${field('Sammanfattning (sv)', 'summary_sv', d.summary_sv, 'textarea')}
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="lang-badge en">EN</span></div>
+        ${langRow(field('Namn (en)', 'name_en', d.name_en) + field('Roll (en)', 'role_en', d.role_en))}
+        ${field('Sammanfattning (en)', 'summary_en', d.summary_en, 'textarea')}
+      </div>
+      <button class="btn btn-primary">Spara</button>
+    </form>
+  `
+  $('hForm').onsubmit = async e => {
+    e.preventDefault()
+    try { await api('PUT', '/api/header', formData(e.target)); toast('Sparad!') }
+    catch(err) { toast(err.message, false) }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// INFO
+// ═══════════════════════════════════════════════════════════════════════════
+async function renderInfo() {
+  main.innerHTML = '<h2>Info-banner</h2><p style="color:#64748b">Laddar...</p>'
+  const d = await api('GET', '/api/info')
+  main.innerHTML = `
+    <h2>Info-banner</h2>
+    <form id="iForm">
+      <div class="card">
+        ${field('Text (sv)', 'text_sv', d.text_sv)}
+        ${field('Text (en)', 'text_en', d.text_en)}
+      </div>
+      <button class="btn btn-primary">Spara</button>
+    </form>
+  `
+  $('iForm').onsubmit = async e => {
+    e.preventDefault()
+    try { await api('PUT', '/api/info', formData(e.target)); toast('Sparad!') }
+    catch(err) { toast(err.message, false) }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// FOOTER
+// ═══════════════════════════════════════════════════════════════════════════
+async function renderFooter() {
+  main.innerHTML = '<h2>Footer</h2><p style="color:#64748b">Laddar...</p>'
+  const d = await api('GET', '/api/footer')
+  main.innerHTML = `
+    <h2>Footer</h2>
+    <form id="fForm">
+      <div class="card">
+        ${field('CV URL', 'cv_url', d.cv_url)}
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="lang-badge sv">SV</span></div>
+        ${field('Copyright (sv)', 'copyright_sv', d.copyright_sv)}
+        ${field('Text (sv)', 'text_sv', d.text_sv)}
+        ${langRow(field('CV-text (sv)', 'cv_text_sv', d.cv_text_sv) + field('CV-text2 (sv)', 'cv_text2_sv', d.cv_text2_sv))}
+      </div>
+      <div class="card">
+        <div class="card-title"><span class="lang-badge en">EN</span></div>
+        ${field('Copyright (en)', 'copyright_en', d.copyright_en)}
+        ${field('Text (en)', 'text_en', d.text_en)}
+        ${langRow(field('CV-text (en)', 'cv_text_en', d.cv_text_en) + field('CV-text2 (en)', 'cv_text2_en', d.cv_text2_en))}
+      </div>
+      <button class="btn btn-primary">Spara</button>
+    </form>
+  `
+  $('fForm').onsubmit = async e => {
+    e.preventDefault()
+    try { await api('PUT', '/api/footer', formData(e.target)); toast('Sparad!') }
+    catch(err) { toast(err.message, false) }
+  }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SOCIAL LINKS
+// ═══════════════════════════════════════════════════════════════════════════
+async function renderSocial() {
+  main.innerHTML = '<h2>Sociala länkar</h2><p style="color:#64748b">Laddar...</p>'
+  const links = await api('GET', '/api/social-links')
+  main.innerHTML = `
+    <h2>Sociala länkar</h2>
+    <div class="card">
+      <div id="socialList"></div>
+    </div>
+    <div class="card">
+      <div class="card-title">Lägg till</div>
+      <form id="socialForm">
+        ${langRow(field('Ikon (t.ex. fab fa-github)', 'icon') + field('URL', 'url'))}
+        <div class="btn-row"><button class="btn btn-primary btn-sm">Lägg till</button></div>
+      </form>
+    </div>
+  `
+  renderSocialList(links)
+
+  $('socialForm').onsubmit = async e => {
+    e.preventDefault()
+    try {
+      await api('POST', '/api/social-links', formData(e.target))
+      toast('Tillagd!')
+      e.target.reset()
+      renderSocial()
+    } catch(err) { toast(err.message, false) }
+  }
+}
+
+function renderSocialList(links) {
+  $('socialList').innerHTML = links.map(l => `
+    <div class="list-item" id="sl-${l.id}">
+      <div class="list-item-info">
+        <div class="list-item-title"><i class="${esc(l.icon)}"></i> ${esc(l.icon)}</div>
+        <div class="list-item-sub">${esc(l.url)}</div>
+      </div>
+      <div class="list-item-actions">
+        <button class="btn btn-ghost btn-sm" onclick="editSocial(${l.id},'${esc(l.icon)}','${esc(l.url)}')">Redigera</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteSocial(${l.id})">Ta bort</button>
+      </div>
+    </div>
+  `).join('')
+}
+
+async function editSocial(id, icon, url) {
+  const newIcon = prompt('Ikon:', icon)
+  if (newIcon === null) return
+  const newUrl = prompt('URL:', url)
+  if (newUrl === null) return
+  try { await api('PUT', `/api/social-links/${id}`, { icon: newIcon, url: newUrl }); toast('Sparad!'); renderSocial() }
+  catch(err) { toast(err.message, false) }
+}
+
+async function deleteSocial(id) {
+  if (!confirm('Ta bort länk?')) return
+  try { await api('DELETE', `/api/social-links/${id}`); toast('Borttagen!'); renderSocial() }
+  catch(err) { toast(err.message, false) }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// EDUCATION
+// ═══════════════════════════════════════════════════════════════════════════
+let editEduId = null
+
+async function renderEducation() {
+  main.innerHTML = '<h2>Utbildning</h2><p style="color:#64748b">Laddar...</p>'
+  const list = await api('GET', '/api/education')
+  main.innerHTML = `
+    <h2>Utbildning</h2>
+    <div class="card"><div id="eduList"></div></div>
+    <div class="card">
+      <div class="card-title" id="eduFormTitle">Lägg till</div>
+      <form id="eduForm">
+        ${field('Examensbevis URL (valfri)', 'examensbevis')}
+        <hr>
+        <div class="card-title"><span class="lang-badge sv">SV</span></div>
+        ${langRow(field('Rubrik (sv)', 'heading_sv') + field('Underrubrik (sv)', 'subheading_sv'))}
+        ${field('Beskrivning (sv)', 'details_sv', '', 'textarea')}
+        <div class="card-title" style="margin-top:.75rem"><span class="lang-badge en">EN</span></div>
+        ${langRow(field('Rubrik (en)', 'heading_en') + field('Underrubrik (en)', 'subheading_en'))}
+        ${field('Beskrivning (en)', 'details_en', '', 'textarea')}
+        <div class="btn-row">
+          <button class="btn btn-primary btn-sm" id="eduSubmit">Lägg till</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="eduCancel" style="display:none" onclick="cancelEdu()">Avbryt</button>
+        </div>
+      </form>
+    </div>
+  `
+  renderEduList(list)
+  $('eduForm').onsubmit = saveEdu
+}
+
+function renderEduList(list) {
+  $('eduList').innerHTML = list.length ? list.map(e => `
+    <div class="list-item">
+      <div class="list-item-info">
+        <div class="list-item-title">${esc(e.heading_sv)}</div>
+        <div class="list-item-sub">${esc(e.subheading_sv)} · ${esc(e.details_sv || '')}</div>
+      </div>
+      <div class="list-item-actions">
+        <button class="btn btn-ghost btn-sm" onclick='loadEdu(${JSON.stringify(e)})'>Redigera</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteEdu(${e.id})">Ta bort</button>
+      </div>
+    </div>
+  `).join('') : '<p style="color:#64748b;font-size:.85rem">Inga poster.</p>'
+}
+
+function loadEdu(e) {
+  editEduId = e.id
+  const f = $('eduForm')
+  f.examensbevis.value = e.examensbevis || ''
+  f.heading_sv.value = e.heading_sv || ''
+  f.subheading_sv.value = e.subheading_sv || ''
+  f.details_sv.value = e.details_sv || ''
+  f.heading_en.value = e.heading_en || ''
+  f.subheading_en.value = e.subheading_en || ''
+  f.details_en.value = e.details_en || ''
+  $('eduFormTitle').textContent = 'Redigera'
+  $('eduSubmit').textContent = 'Spara'
+  $('eduCancel').style.display = ''
+  f.scrollIntoView({ behavior: 'smooth' })
+}
+
+function cancelEdu() {
+  editEduId = null
+  $('eduForm').reset()
+  $('eduFormTitle').textContent = 'Lägg till'
+  $('eduSubmit').textContent = 'Lägg till'
+  $('eduCancel').style.display = 'none'
+}
+
+async function saveEdu(e) {
+  e.preventDefault()
+  const body = formData(e.target)
+  try {
+    if (editEduId) { await api('PUT', `/api/education/${editEduId}`, body); toast('Sparad!') }
+    else { await api('POST', '/api/education', body); toast('Tillagd!') }
+    renderEducation()
+  } catch(err) { toast(err.message, false) }
+}
+
+async function deleteEdu(id) {
+  if (!confirm('Ta bort?')) return
+  try { await api('DELETE', `/api/education/${id}`); toast('Borttagen!'); renderEducation() }
+  catch(err) { toast(err.message, false) }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// CONTACT
+// ═══════════════════════════════════════════════════════════════════════════
+let editContactId = null
+
+async function renderContact() {
+  main.innerHTML = '<h2>Kontakt</h2><p style="color:#64748b">Laddar...</p>'
+  const list = await api('GET', '/api/contact')
+  main.innerHTML = `
+    <h2>Kontakt</h2>
+    <div class="card"><div id="contactList"></div></div>
+    <div class="card">
+      <div class="card-title" id="ctFormTitle">Lägg till kontaktrad</div>
+      <p style="color:#64748b;font-size:.75rem;margin-bottom:.75rem">JSON-fält: icon, text, url och valfri tag</p>
+      <form id="ctForm">
+        <div class="card-title"><span class="lang-badge sv">SV</span></div>
+        <div class="g4">
+          ${field('Ikon', 'icon_sv')}
+          ${field('Text', 'text_sv')}
+          ${field('URL', 'url_sv')}
+          ${field('Tag (valfri)', 'tag_sv')}
+        </div>
+        <div class="card-title" style="margin-top:.75rem"><span class="lang-badge en">EN</span></div>
+        <div class="g4">
+          ${field('Ikon', 'icon_en')}
+          ${field('Text', 'text_en')}
+          ${field('URL', 'url_en')}
+          ${field('Tag (valfri)', 'tag_en')}
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-sm" id="ctSubmit">Lägg till</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="ctCancel" style="display:none" onclick="cancelContact()">Avbryt</button>
+        </div>
+      </form>
+    </div>
+  `
+  renderContactList(list)
+  $('ctForm').onsubmit = saveContact
+}
+
+function parseContact(json) {
+  try { return JSON.parse(json || '{}') } catch { return {} }
+}
+
+function renderContactList(list) {
+  $('contactList').innerHTML = list.length ? list.map(c => {
+    const sv = parseContact(c.details_sv)
+    const en = parseContact(c.details_en)
+    return `
+      <div class="list-item">
+        <div class="list-item-info">
+          <div class="list-item-title">${esc(sv.icon || '')} ${esc(sv.text || '')}</div>
+          <div class="list-item-sub">${esc(sv.url || '')}${sv.tag ? ' · '+esc(sv.tag) : ''}</div>
+        </div>
+        <div class="list-item-actions">
+          <button class="btn btn-ghost btn-sm" onclick='loadContact(${c.id}, ${JSON.stringify(c.details_sv)}, ${JSON.stringify(c.details_en)})'>Redigera</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteContact(${c.id})">Ta bort</button>
+        </div>
+      </div>
+    `
+  }).join('') : '<p style="color:#64748b;font-size:.85rem">Inga poster.</p>'
+}
+
+function loadContact(id, details_sv, details_en) {
+  editContactId = id
+  const sv = parseContact(details_sv)
+  const en = parseContact(details_en)
+  const f = $('ctForm')
+  f.icon_sv.value = sv.icon || ''; f.text_sv.value = sv.text || ''; f.url_sv.value = sv.url || ''; f.tag_sv.value = sv.tag || ''
+  f.icon_en.value = en.icon || ''; f.text_en.value = en.text || ''; f.url_en.value = en.url || ''; f.tag_en.value = en.tag || ''
+  $('ctFormTitle').textContent = 'Redigera'
+  $('ctSubmit').textContent = 'Spara'
+  $('ctCancel').style.display = ''
+  f.scrollIntoView({ behavior: 'smooth' })
+}
+
+function cancelContact() {
+  editContactId = null
+  $('ctForm').reset()
+  $('ctFormTitle').textContent = 'Lägg till kontaktrad'
+  $('ctSubmit').textContent = 'Lägg till'
+  $('ctCancel').style.display = 'none'
+}
+
+async function saveContact(e) {
+  e.preventDefault()
+  const d = formData(e.target)
+  const buildJson = lang => {
+    const obj = { icon: d[`icon_${lang}`], text: d[`text_${lang}`], url: d[`url_${lang}`] }
+    if (d[`tag_${lang}`]) obj.tag = d[`tag_${lang}`]
+    return JSON.stringify(obj)
+  }
+  const body = { details_sv: buildJson('sv'), details_en: buildJson('en') }
+  try {
+    if (editContactId) { await api('PUT', `/api/contact/${editContactId}`, body); toast('Sparad!') }
+    else { await api('POST', '/api/contact', body); toast('Tillagd!') }
+    renderContact()
+  } catch(err) { toast(err.message, false) }
+}
+
+async function deleteContact(id) {
+  if (!confirm('Ta bort?')) return
+  try { await api('DELETE', `/api/contact/${id}`); toast('Borttagen!'); renderContact() }
+  catch(err) { toast(err.message, false) }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// EXPERIENCE
+// ═══════════════════════════════════════════════════════════════════════════
+let editExpId = null
+let dutyCount = 0
+let itemCounts = {}
+
+async function renderExperience() {
+  main.innerHTML = '<h2>Erfarenhet</h2><p style="color:#64748b">Laddar...</p>'
+  const list = await api('GET', '/api/experiences')
+  main.innerHTML = `
+    <h2>Erfarenhet</h2>
+    <div class="card"><div id="expList"></div></div>
+    <div class="card">
+      <div class="card-title" id="expFormTitle">Lägg till</div>
+      <form id="expForm">
+        ${field('Datum', 'date', '', 'input', 'placeholder="Aug 2020 - Aug 2025"')}
+        <hr>
+        <div class="card-title"><span class="lang-badge sv">SV</span></div>
+        ${field('Titel (sv)', 'heading_sv')}
+        ${field('Detaljer (sv) — en rad per post', 'details_sv', '', 'textarea')}
+        <div class="card-title" style="margin-top:.75rem"><span class="lang-badge en">EN</span></div>
+        ${field('Titel (en)', 'heading_en')}
+        ${field('Detaljer (en) — en rad per post', 'details_en', '', 'textarea')}
+        <hr>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:.75rem">
+          <span style="font-size:.75rem;color:#64748b">Duties</span>
+          <button type="button" class="btn btn-ghost btn-sm" onclick="addDuty()">+ Duty</button>
+        </div>
+        <div id="dutiesContainer"></div>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-sm" id="expSubmit">Lägg till</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="expCancel" style="display:none" onclick="cancelExp()">Avbryt</button>
+        </div>
+      </form>
+    </div>
+  `
+  dutyCount = 0; itemCounts = {}
+  renderExpList(list)
+  $('expForm').onsubmit = saveExp
+}
+
+function renderExpList(list) {
+  $('expList').innerHTML = list.length ? list.map(e => {
+    let details = []; try { details = JSON.parse(e.details_sv || '[]') } catch {}
+    return `
+      <div class="list-item">
+        <div class="list-item-info">
+          <div class="list-item-title">${esc(e.heading_sv)}</div>
+          <div class="list-item-sub">${esc(e.date || '')} · ${details.join(' · ')}</div>
+        </div>
+        <div class="list-item-actions">
+          <button class="btn btn-ghost btn-sm" onclick='loadExp(${JSON.stringify(e)})'>Redigera</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteExp(${e.id})">Ta bort</button>
+        </div>
+      </div>
+    `
+  }).join('') : '<p style="color:#64748b;font-size:.85rem">Inga poster.</p>'
+}
+
+function loadExp(e) {
+  editExpId = e.id
+  dutyCount = 0; itemCounts = {}
+  const f = $('expForm')
+  f.date.value = e.date || ''
+  f.heading_sv.value = e.heading_sv || ''
+  let dsv = []; try { dsv = JSON.parse(e.details_sv || '[]') } catch {}
+  f.details_sv.value = dsv.join('\n')
+  f.heading_en.value = e.heading_en || ''
+  let den = []; try { den = JSON.parse(e.details_en || '[]') } catch {}
+  f.details_en.value = den.join('\n')
+
+  $('dutiesContainer').innerHTML = ''
+  for (const duty of e.duties || []) {
+    addDuty()
+    const n = dutyCount
+    f[`duty_header_sv_${n}`].value = duty.header_sv || ''
+    f[`duty_header_en_${n}`].value = duty.header_en || ''
+    for (const item of duty.items || []) {
+      addItem(n)
+      const m = itemCounts[n]
+      document.querySelector(`[name="item_sv_${n}_${m}"]`).value = item.item_sv || ''
+      document.querySelector(`[name="item_en_${n}_${m}"]`).value = item.item_en || ''
+    }
+  }
+
+  $('expFormTitle').textContent = 'Redigera'
+  $('expSubmit').textContent = 'Spara'
+  $('expCancel').style.display = ''
+  f.scrollIntoView({ behavior: 'smooth' })
+}
+
+function cancelExp() {
+  editExpId = null
+  dutyCount = 0; itemCounts = {}
+  $('expForm').reset()
+  $('dutiesContainer').innerHTML = ''
+  $('expFormTitle').textContent = 'Lägg till'
+  $('expSubmit').textContent = 'Lägg till'
+  $('expCancel').style.display = 'none'
+}
+
+function addDuty() {
+  dutyCount++
+  const n = dutyCount
+  const div = document.createElement('div')
+  div.className = 'duty-block'
+  div.id = `duty-${n}`
+  div.innerHTML = `
+    <div class="duty-header">
+      <span class="duty-label">Duty ${n}</span>
+      <button type="button" class="btn btn-danger btn-sm" onclick="document.getElementById('duty-${n}').remove()">Ta bort</button>
+    </div>
+    <div class="g2" style="margin-bottom:.65rem">
+      <div class="field"><label>Rubrik (sv)</label><input type="text" name="duty_header_sv_${n}" /></div>
+      <div class="field"><label>Rubrik (en)</label><input type="text" name="duty_header_en_${n}" /></div>
+    </div>
+    <div id="items-${n}"></div>
+    <button type="button" class="btn btn-ghost btn-sm" onclick="addItem(${n})">+ Punkt</button>
+  `
+  $('dutiesContainer').appendChild(div)
+  addItem(n)
+}
+
+function addItem(dutyN) {
+  if (!itemCounts[dutyN]) itemCounts[dutyN] = 0
+  itemCounts[dutyN]++
+  const m = itemCounts[dutyN]
+  const row = document.createElement('div')
+  row.className = 'item-row'
+  row.id = `item-${dutyN}-${m}`
+  row.innerHTML = `
+    <input type="text" name="item_sv_${dutyN}_${m}" placeholder="Punkt (sv)" />
+    <input type="text" name="item_en_${dutyN}_${m}" placeholder="Punkt (en)" />
+    <button type="button" class="btn-x" onclick="document.getElementById('item-${dutyN}-${m}').remove()">✕</button>
+  `
+  $(`items-${dutyN}`).appendChild(row)
+}
+
+async function saveExp(e) {
+  e.preventDefault()
+  const f = e.target
+  const fd = formData(f)
+
+  const detailsSv = (fd.details_sv || '').split('\n').map(s=>s.trim()).filter(Boolean)
+  const detailsEn = (fd.details_en || '').split('\n').map(s=>s.trim()).filter(Boolean)
+
+  const duties = []
+  document.querySelectorAll('.duty-block').forEach(block => {
+    const n = block.id.replace('duty-', '')
+    const items = []
+    block.querySelectorAll('.item-row').forEach(row => {
+      const sv = row.querySelector(`[name^="item_sv_"]`)?.value.trim()
+      const en = row.querySelector(`[name^="item_en_"]`)?.value.trim()
+      if (sv || en) items.push({ item_sv: sv, item_en: en })
+    })
+    const header_sv = fd[`duty_header_sv_${n}`] || ''
+    const header_en = fd[`duty_header_en_${n}`] || ''
+    if (header_sv || header_en || items.length) duties.push({ header_sv, header_en, items })
+  })
+
+  const body = { date: fd.date, heading_sv: fd.heading_sv, heading_en: fd.heading_en, details_sv: detailsSv, details_en: detailsEn, duties }
+  try {
+    if (editExpId) { await api('PUT', `/api/experiences/${editExpId}`, body); toast('Sparad!') }
+    else { await api('POST', '/api/experiences', body); toast('Tillagd!') }
+    renderExperience()
+  } catch(err) { toast(err.message, false) }
+}
+
+async function deleteExp(id) {
+  if (!confirm('Ta bort erfarenhet?')) return
+  try { await api('DELETE', `/api/experiences/${id}`); toast('Borttagen!'); renderExperience() }
+  catch(err) { toast(err.message, false) }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// RECOMMENDATIONS
+// ═══════════════════════════════════════════════════════════════════════════
+let editRecId = null
+
+async function renderRecommendations() {
+  main.innerHTML = '<h2>Rekommendationer</h2><p style="color:#64748b">Laddar...</p>'
+  const list = await api('GET', '/api/recommendations')
+  main.innerHTML = `
+    <h2>Rekommendationer</h2>
+    <div class="card"><div id="recList"></div></div>
+    <div class="card">
+      <div class="card-title" id="recFormTitle">Lägg till</div>
+      <form id="recForm">
+        ${langRow(field('Namn', 'name') + field('Företag', 'company'))}
+        ${langRow(field('E-post', 'mail') + field('Telefon', 'phone'))}
+        <div class="btn-row">
+          <button class="btn btn-primary btn-sm" id="recSubmit">Lägg till</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="recCancel" style="display:none" onclick="cancelRec()">Avbryt</button>
+        </div>
+      </form>
+    </div>
+  `
+  renderRecList(list)
+  $('recForm').onsubmit = saveRec
+}
+
+function renderRecList(list) {
+  $('recList').innerHTML = list.length ? list.map(r => `
+    <div class="list-item">
+      <div class="list-item-info">
+        <div class="list-item-title">${esc(r.name)} · ${esc(r.company)}</div>
+        <div class="list-item-sub">${esc(r.mail)} · ${esc(r.phone)}</div>
+      </div>
+      <div class="list-item-actions">
+        <button class="btn btn-ghost btn-sm" onclick='loadRec(${JSON.stringify(r)})'>Redigera</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteRec(${r.id})">Ta bort</button>
+      </div>
+    </div>
+  `).join('') : '<p style="color:#64748b;font-size:.85rem">Inga poster.</p>'
+}
+
+function loadRec(r) {
+  editRecId = r.id
+  const f = $('recForm')
+  f.name.value = r.name || ''; f.company.value = r.company || ''
+  f.mail.value = r.mail || ''; f.phone.value = r.phone || ''
+  $('recFormTitle').textContent = 'Redigera'
+  $('recSubmit').textContent = 'Spara'
+  $('recCancel').style.display = ''
+  f.scrollIntoView({ behavior: 'smooth' })
+}
+
+function cancelRec() {
+  editRecId = null
+  $('recForm').reset()
+  $('recFormTitle').textContent = 'Lägg till'
+  $('recSubmit').textContent = 'Lägg till'
+  $('recCancel').style.display = 'none'
+}
+
+async function saveRec(e) {
+  e.preventDefault()
+  const body = formData(e.target)
+  try {
+    if (editRecId) { await api('PUT', `/api/recommendations/${editRecId}`, body); toast('Sparad!') }
+    else { await api('POST', '/api/recommendations', body); toast('Tillagd!') }
+    renderRecommendations()
+  } catch(err) { toast(err.message, false) }
+}
+
+async function deleteRec(id) {
+  if (!confirm('Ta bort?')) return
+  try { await api('DELETE', `/api/recommendations/${id}`); toast('Borttagen!'); renderRecommendations() }
+  catch(err) { toast(err.message, false) }
+}
+
+// ═══════════════════════════════════════════════════════════════════════════
+// SKILLS
+// ═══════════════════════════════════════════════════════════════════════════
+let editSkillId = null
+let skillCategories = []
+
+async function renderSkills() {
+  main.innerHTML = '<h2>Färdigheter</h2><p style="color:#64748b">Laddar...</p>'
+  const [cats, skills] = await Promise.all([api('GET', '/api/skill-categories'), api('GET', '/api/skills')])
+  skillCategories = cats
+
+  const catOptions = cats.map(c => `<option value="${c.id}">${esc(c.name_sv)}</option>`).join('')
+
+  main.innerHTML = `
+    <h2>Färdigheter</h2>
+
+    <div class="card">
+      <div class="card-title">Kategorier</div>
+      <div id="catList"></div>
+      <hr>
+      <form id="catForm" style="display:grid;grid-template-columns:1fr 1fr auto;gap:.5rem;align-items:end">
+        <div class="field"><label>Namn (sv)</label><input type="text" name="name_sv" /></div>
+        <div class="field"><label>Namn (en)</label><input type="text" name="name_en" /></div>
+        <button class="btn btn-primary btn-sm" style="margin-bottom:2px">+ Kategori</button>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="card-title" id="skillFormTitle">Lägg till skill</div>
+      <form id="skillForm">
+        <div class="g3">
+          <div class="field"><label>Kategori</label><select name="category_id">${catOptions}</select></div>
+          ${field('Bild (t.ex. /svg/vue.svg)', 'image')}
+          <div class="g2">
+            ${field('Betyg (1-5)', 'grade')}
+            ${field('Ordning', 'order')}
+          </div>
+        </div>
+        <div class="g2" style="margin-top:.5rem">
+          <div>
+            <div class="card-title"><span class="lang-badge sv">SV</span></div>
+            ${field('Namn (sv)', 'text_sv')}
+            ${field('Beskrivning (sv)', 'description_sv')}
+          </div>
+          <div>
+            <div class="card-title"><span class="lang-badge en">EN</span></div>
+            ${field('Namn (en)', 'text_en')}
+            ${field('Beskrivning (en)', 'description_en')}
+          </div>
+        </div>
+        <div class="btn-row">
+          <button class="btn btn-primary btn-sm" id="skillSubmit">Lägg till</button>
+          <button type="button" class="btn btn-ghost btn-sm" id="skillCancel" style="display:none" onclick="cancelSkill()">Avbryt</button>
+        </div>
+      </form>
+    </div>
+
+    <div class="card">
+      <div class="card-title">Alla skills</div>
+      <div id="skillList"></div>
+    </div>
+  `
+
+  renderCatList(cats)
+  renderSkillList(skills, cats)
+
+  $('catForm').onsubmit = async e => {
+    e.preventDefault()
+    try { await api('POST', '/api/skill-categories', formData(e.target)); toast('Kategori tillagd!'); renderSkills() }
+    catch(err) { toast(err.message, false) }
+  }
+  $('skillForm').onsubmit = saveSkill
+}
+
+function renderCatList(cats) {
+  $('catList').innerHTML = cats.map(c => `
+    <div class="list-item" style="padding:.6rem 1rem">
+      <div class="list-item-info">
+        <div class="list-item-title">${esc(c.name_sv)} / ${esc(c.name_en)}</div>
+      </div>
+      <div class="list-item-actions">
+        <button class="btn btn-ghost btn-sm" onclick='editCat(${c.id},"${esc(c.name_sv)}","${esc(c.name_en)}")'>Redigera</button>
+      </div>
+    </div>
+  `).join('')
+}
+
+async function editCat(id, name_sv, name_en) {
+  const sv = prompt('Namn (sv):', name_sv); if (sv === null) return
+  const en = prompt('Namn (en):', name_en); if (en === null) return
+  try { await api('PUT', `/api/skill-categories/${id}`, { name_sv: sv, name_en: en }); toast('Sparad!'); renderSkills() }
+  catch(err) { toast(err.message, false) }
+}
+
+function renderSkillList(skills, cats) {
+  const catMap = {}
+  cats.forEach(c => catMap[c.id] = c.name_sv)
+
+  $('skillList').innerHTML = skills.length ? skills.map(s => `
+    <div class="list-item">
+      <div class="list-item-info">
+        <div class="list-item-title">${esc(s.text_sv)} <span style="color:#64748b;font-size:.75rem">${esc(catMap[s.category_id] || '')}</span></div>
+        <div class="list-item-sub">⭐${s.grade} · #${s.order} · ${esc(s.image || '')} · ${esc(s.description_sv || '')}</div>
+      </div>
+      <div class="list-item-actions">
+        <button class="btn btn-ghost btn-sm" onclick='loadSkill(${JSON.stringify(s)})'>Redigera</button>
+        <button class="btn btn-danger btn-sm" onclick="deleteSkill(${s.id})">Ta bort</button>
+      </div>
+    </div>
+  `).join('') : '<p style="color:#64748b;font-size:.85rem">Inga skills.</p>'
+}
+
+function loadSkill(s) {
+  editSkillId = s.id
+  const f = $('skillForm')
+  f.category_id.value = s.category_id
+  f.image.value = s.image || ''
+  f.grade.value = s.grade || ''
+  f.order.value = s.order || ''
+  f.text_sv.value = s.text_sv || ''
+  f.description_sv.value = s.description_sv || ''
+  f.text_en.value = s.text_en || ''
+  f.description_en.value = s.description_en || ''
+  $('skillFormTitle').textContent = 'Redigera skill'
+  $('skillSubmit').textContent = 'Spara'
+  $('skillCancel').style.display = ''
+  f.scrollIntoView({ behavior: 'smooth' })
+}
+
+function cancelSkill() {
+  editSkillId = null
+  $('skillForm').reset()
+  $('skillFormTitle').textContent = 'Lägg till skill'
+  $('skillSubmit').textContent = 'Lägg till'
+  $('skillCancel').style.display = 'none'
+}
+
+async function saveSkill(e) {
+  e.preventDefault()
+  const body = formData(e.target)
+  try {
+    if (editSkillId) { await api('PUT', `/api/skills/${editSkillId}`, body); toast('Sparad!') }
+    else { await api('POST', '/api/skills', body); toast('Tillagd!') }
+    renderSkills()
+  } catch(err) { toast(err.message, false) }
+}
+
+async function deleteSkill(id) {
+  if (!confirm('Ta bort skill?')) return
+  try { await api('DELETE', `/api/skills/${id}`); toast('Borttagen!'); renderSkills() }
+  catch(err) { toast(err.message, false) }
+}
+
+// ── init ─────────────────────────────────────────────────────────────────────
+document.querySelector('nav a[data-tab="header"]').classList.add('active')
+renderHeader()
+</script>
+</body>
+</html>
