@@ -1,0 +1,80 @@
+// Shared SCSS helpers for CV v2. Import with: @use '../styles/mixins' as *;
+@use 'sass:map';
+
+$breakpoints: (
+  sm: 560px,
+  md: 760px,
+  lg: 960px,
+  xl: 1040px,
+);
+
+@mixin up($bp) {
+  @media (min-width: map.get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+@mixin down($bp) {
+  @media (max-width: map.get($breakpoints, $bp)) {
+    @content;
+  }
+}
+
+@mixin print {
+  @media print {
+    @content;
+  }
+}
+
+@mixin motion {
+  @media (prefers-reduced-motion: no-preference) {
+    @content;
+  }
+}
+
+// Large editorial serif used for headings.
+@mixin display($opsz: 96, $soft: 30) {
+  font-family: var(--font-display);
+  font-variation-settings:
+    'opsz' $opsz,
+    'SOFT' $soft;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+// Card surface with a pointer-following spotlight (pair with v-spotlight).
+@mixin spotlight-card {
+  position: relative;
+  isolation: isolate;
+  background: var(--bg-elev);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  transition:
+    border-color 0.3s ease,
+    transform 0.5s var(--ease-out),
+    box-shadow 0.5s var(--ease-out);
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -1px;
+    z-index: -1;
+    border-radius: inherit;
+    background: radial-gradient(
+      420px circle at var(--mx, 50%) var(--my, 50%),
+      var(--accent-soft),
+      transparent 45%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  &:hover {
+    border-color: var(--line-strong);
+    box-shadow: var(--shadow-lg);
+
+    &::before {
+      opacity: 1;
+    }
+  }
+}

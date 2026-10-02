@@ -1,0 +1,344 @@
+// Global styles for CV v2.
+// Everything is scoped under html.cv2 (set by CV.vue on mount) because the router
+// imports both CV versions — nothing here may leak into the original CV.
+
+@use 'sass:map';
+@use 'mixins' as *;
+
+$themes: (
+  light: (
+    bg: #f4f1ea,
+    bg-elev: #fbfaf6,
+    bg-sunken: #ebe7de,
+    ink: #16140f,
+    ink-2: #48443b,
+    muted: #7a7468,
+    line: #e0dacd,
+    line-strong: #c9c1b1,
+    accent: #c2410c,
+    accent-ink: #fffaf5,
+    accent-soft: rgb(194 65 12 / 0.09),
+    dot: rgb(22 20 15 / 0.13),
+    shadow-sm: 0 1px 2px rgb(22 20 15 / 0.05),
+    shadow-lg: (0 1px 2px rgb(22 20 15 / 0.04), 0 24px 48px -24px rgb(22 20 15 / 0.22)),
+    nav-bg: rgb(244 241 234 / 0.72),
+  ),
+  dark: (
+    bg: #0d0c0a,
+    bg-elev: #161512,
+    bg-sunken: #121110,
+    ink: #f1ede4,
+    ink-2: #c4bdb0,
+    muted: #8a8478,
+    line: #24221d,
+    line-strong: #37342d,
+    accent: #ff7a45,
+    accent-ink: #1b0c05,
+    accent-soft: rgb(255 122 69 / 0.1),
+    dot: rgb(241 237 228 / 0.11),
+    shadow-sm: 0 1px 2px rgb(0 0 0 / 0.4),
+    shadow-lg: (0 1px 2px rgb(0 0 0 / 0.4), 0 24px 48px -24px rgb(0 0 0 / 0.7)),
+    nav-bg: rgb(13 12 10 / 0.7),
+  ),
+  print: (
+    bg: #fff,
+    bg-elev: #fff,
+    bg-sunken: #fff,
+    ink: #111,
+    ink-2: #333,
+    muted: #666,
+    line: #ddd,
+    line-strong: #bbb,
+    accent: #b23a0a,
+    accent-soft: transparent,
+    shadow-sm: none,
+    shadow-lg: none,
+  ),
+);
+
+@mixin theme($name) {
+  @each $token, $value in map.get($themes, $name) {
+    --#{$token}: #{$value};
+  }
+}
+
+html.cv2 {
+  @include theme(light);
+
+  --font-display: 'Fraunces', 'Iowan Old Style', 'Palatino Linotype', Georgia, serif;
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, Consolas, monospace;
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --radius: 16px;
+  --gutter: clamp(16px, 4vw, 48px);
+  --maxw: 1200px;
+
+  color-scheme: light;
+  scroll-padding-top: 88px;
+  background: var(--bg);
+
+  &[data-theme='dark'] {
+    @include theme(dark);
+    color-scheme: dark;
+  }
+
+  @include motion {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100vh;
+    overflow-x: clip; // decorative layers bleed past the gutter
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    font-feature-settings: 'ss01', 'cv11';
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+    transition: background-color 0.3s ease;
+  }
+
+  // The original CV paints an animated canvas behind everything — not wanted here.
+  #backgroundCanvas {
+    display: none;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  ::selection {
+    background: var(--accent);
+    color: var(--accent-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+
+  a {
+    color: inherit;
+  }
+
+  img {
+    max-width: 100%;
+    display: block;
+  }
+
+  button {
+    font: inherit;
+    color: inherit;
+  }
+
+  // ---------- Shared primitives ----------
+
+  .mono {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    letter-spacing: 0.02em;
+  }
+
+  .btn {
+    --btn-bg: transparent;
+    --btn-fg: var(--ink);
+    --btn-border: var(--line-strong);
+
+    display: inline-flex;
+    align-items: center;
+    gap: 0.55em;
+    height: 44px;
+    padding: 0 1.1rem;
+    border-radius: 999px;
+    border: 1px solid var(--btn-border);
+    background: var(--btn-bg);
+    color: var(--btn-fg);
+    font-size: 0.92rem;
+    font-weight: 500;
+    text-decoration: none;
+    cursor: pointer;
+    transition:
+      transform 0.4s var(--ease-out),
+      background-color 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease;
+
+    svg {
+      transition: transform 0.4s var(--ease-out);
+    }
+
+    &:hover {
+      border-color: var(--ink);
+
+      svg {
+        transform: translate(2px, -2px);
+      }
+    }
+
+    &:active {
+      transform: scale(0.97);
+    }
+
+    &--primary {
+      --btn-bg: var(--ink);
+      --btn-fg: var(--bg);
+      --btn-border: var(--ink);
+
+      &:hover {
+        --btn-bg: var(--accent);
+        --btn-border: var(--accent);
+        --btn-fg: var(--accent-ink);
+      }
+    }
+  }
+
+  .icon-btn {
+    display: inline-grid;
+    place-items: center;
+    width: 38px;
+    height: 38px;
+    border-radius: 999px;
+    border: 1px solid transparent;
+    background: transparent;
+    color: var(--ink-2);
+    cursor: pointer;
+    text-decoration: none;
+    transition:
+      background-color 0.2s ease,
+      color 0.2s ease,
+      border-color 0.2s ease;
+
+    &:hover {
+      color: var(--ink);
+      background: var(--bg-sunken);
+      border-color: var(--line);
+    }
+  }
+
+  .kbd {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.6em;
+    height: 1.6em;
+    padding: 0 0.35em;
+    border-radius: 5px;
+    border: 1px solid var(--line-strong);
+    border-bottom-width: 2px;
+    background: var(--bg-elev);
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    line-height: 1;
+    color: var(--ink-2);
+  }
+
+  .link-underline {
+    text-decoration: none;
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size 0.5s var(--ease-out);
+
+    &:hover {
+      background-size: 100% 1px;
+    }
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+  }
+
+  // Black-only logos (see logos.ts) need inverting when shown directly on a dark background.
+  &[data-theme='dark'] .marquee img.is-mono {
+    filter: invert(1) !important;
+  }
+
+  // ---------- Scroll reveal (see directives.ts) ----------
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+      opacity 0.9s var(--ease-out) var(--reveal-delay, 0ms),
+      transform 0.9s var(--ease-out) var(--reveal-delay, 0ms);
+
+    &.is-in {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+
+    .reveal {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  // ---------- Print: a clean, paper-ready CV ----------
+
+  @include print {
+    &,
+    &[data-theme='dark'] {
+      @include theme(print);
+      color-scheme: light;
+      scroll-padding-top: 0;
+    }
+
+    body {
+      font-size: 10.5pt;
+      line-height: 1.45;
+    }
+
+    .no-print {
+      display: none !important;
+    }
+
+    .reveal {
+      opacity: 1 !important;
+      transform: none !important;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation: none !important;
+      transition: none !important;
+    }
+  }
+}
+
+@include print {
+  @page {
+    margin: 14mm 14mm 16mm;
+  }
+}
+
+// Theme switch: disable the default cross-fade so useTheme can animate a circular reveal.
+html.cv2-vt-theme {
+  &::view-transition-old(root),
+  &::view-transition-new(root) {
+    animation: none;
+    mix-blend-mode: normal;
+  }
+}
